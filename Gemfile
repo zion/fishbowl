@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+source :rubygems
 
-# Specify your gem's dependencies in fishbowl.gemspec
 gemspec
+
+gem 'rspec'

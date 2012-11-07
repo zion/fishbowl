@@ -1,5 +1,4 @@
 require "fishbowl/version"
+require "fishbowl/objects"
 
-module Fishbowl
-  # Your code goes here...
-end
+module Fishbowl; end; # :nodoc:
