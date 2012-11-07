@@ -1,6 +1,6 @@
 # Fishbowl
 
-TODO: Write a gem description
+Provides an interface to the Fishbowl Inventory API.
 
 ## Installation
 

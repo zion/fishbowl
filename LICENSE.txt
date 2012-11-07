@@ -1,4 +1,4 @@
-Copyright (c) 2012 James Thompson
+Copyright (c) 2012 The Ready Project, LLC
 
 MIT License
 
