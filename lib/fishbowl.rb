@@ -17,7 +17,7 @@ module Fishbowl # :nodoc:
       @host = options[:host]
       @port = options[:port].nil? ? 28192 : options[:port]
 
-      @connection = ::TCPSocket.new @host, @port
+      @connection = TCPSocket.new @host, @port
     end
 
     def login(options = {})
