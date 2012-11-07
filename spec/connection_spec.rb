@@ -3,6 +3,14 @@ require 'spec_helper'
 describe Fishbowl::Connection do
   let(:connection) { Fishbowl::Connection.new(host: 'localhost') }
 
+  before :each do
+    mock_tcp_connection
+  end
+
+  after :each do
+    unmock_tcp
+  end
+
   describe '.new' do
     it 'should require a host' do
       lambda { Fishbowl::Connection.new() }.should raise_error(Fishbowl::Errors::MissingHost)
