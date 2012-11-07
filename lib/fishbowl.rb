@@ -41,10 +41,7 @@ module Fishbowl # :nodoc:
         }
       end
 
-      request = builder.to_xml
-
-      @connection.write([request.size].pack("L>"))
-      @connection.write(request)
+      write(builder)
 
       # TODO Do something with the response
     end
@@ -57,6 +54,14 @@ module Fishbowl # :nodoc:
 
     def encoded_password
       Base64.encode64(@password)
+    end
+
+    def write(request)
+      body = request.to_xml
+      size = [body.size].pack("L>")
+
+      @connection.write(size)
+      @connection.write(body)
     end
 
   end
