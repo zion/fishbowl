@@ -2,6 +2,8 @@
 
 Provides an interface to the Fishbowl Inventory API.
 
+[![Build Status](https://travis-ci.org/readyproject/fishbowl.png)](https://travis-ci.org/readyproject/fishbowl)
+
 ## Installation
 
 Add this line to your application's Gemfile:
