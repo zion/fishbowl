@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Fishbowl::Errors do
   describe '.confirm_success_or_raise' do
     it "should return true is code is 1000" do
-      Fishbowl::Errors.confirm_success_or_raise(1000, '').should be_true
+      Fishbowl::Errors.confirm_success_or_raise('1000', '').should be_true
     end
 
     it "should raise an error on any other code" do

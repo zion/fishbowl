@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Fishbowl::Objects::Account do
   before :each do
     mock_tcp_connection
+    mock_login_response
     Fishbowl::Connection.connect(host: 'localhost')
     Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
   end

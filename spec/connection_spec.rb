@@ -47,13 +47,15 @@ describe Fishbowl::Connection do
     end
 
     it 'should connect to Fishbowl API' do
-      pending
+      mock_login_response
+      Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
     end
   end
 
   describe '.close' do
     it "should close the connection" do
       lambda {
+        mock_login_response
         Fishbowl::Connection.connect(host: 'localhost')
         Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
 
@@ -79,6 +81,7 @@ describe Fishbowl::Connection do
 
   describe '.username' do
     it 'should return the username value' do
+      mock_login_response
       Fishbowl::Connection.connect(host: 'localhost')
       Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
       Fishbowl::Connection.username.should eq('johndoe')
@@ -87,6 +90,7 @@ describe Fishbowl::Connection do
 
   describe '.password' do
     it 'should return the password value' do
+      mock_login_response
       Fishbowl::Connection.connect(host: 'localhost')
       Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
       Fishbowl::Connection.password.should eq('secret')

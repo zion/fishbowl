@@ -9,31 +9,30 @@ class FakeTCPSocket
 
   attr_reader :last_write
 
-  def readline(some_text = nil)
-    return @canned_response
-  end
-
-  def flush
-  end
+  def flush; end
 
   def write(some_text = nil)
     @last_write = some_text
   end
 
   def readchar
-    return 6
+    6
   end
 
   def read(num)
-    return num > @canned_response.size ? @canned_response : @canned_response[0..num]
+    set_canned('') if @canned_response.nil?
+    num > @canned_response.size ? @canned_response : @canned_response.slice!(0..num)
   end
+  alias_method :recv, :read
 
   def set_canned(response)
-    @canned_response = response
+    body = response
+    size = [body.size].pack("L>")
+
+    @canned_response = size + body
   end
 
-  def close
-  end
+  def close; end
 end
 
 def mock_tcp_connection
