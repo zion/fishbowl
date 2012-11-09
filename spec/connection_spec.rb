@@ -52,7 +52,15 @@ describe Fishbowl::Connection do
   end
 
   describe '.close' do
-    pending
+    it "should close the connection" do
+      lambda {
+        Fishbowl::Connection.connect(host: 'localhost')
+        Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
+
+        Fishbowl::Connection.close
+        Fishbowl::Connection.login
+      }.should raise_error(Fishbowl::Errors::ConnectionNotEstablished)
+    end
   end
 
   describe '.host' do
