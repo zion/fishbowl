@@ -31,6 +31,9 @@ class FakeTCPSocket
   def set_canned(response)
     @canned_response = response
   end
+
+  def close
+  end
 end
 
 def mock_tcp_connection

@@ -11,7 +11,9 @@ describe Fishbowl::Connection do
 
   describe '.connect' do
     it 'should require a host' do
-      lambda { Fishbowl::Connection.connect }.should raise_error(Fishbowl::Errors::MissingHost)
+      lambda {
+        Fishbowl::Connection.connect
+      }.should raise_error(Fishbowl::Errors::MissingHost)
     end
 
     it 'should default to port 28192' do
@@ -21,12 +23,27 @@ describe Fishbowl::Connection do
   end
 
   describe '.login' do
+    before :each do
+      Fishbowl::Connection.connect(host: 'localhost')
+    end
+
+    it 'should require the connection to be established' do
+      lambda {
+        Fishbowl::Connection.close
+        Fishbowl::Connection.login
+      }.should raise_error(Fishbowl::Errors::ConnectionNotEstablished)
+    end
+
     it 'should require a username' do
-      lambda { Fishbowl::Connection.login(password: 'secret') }.should raise_error(Fishbowl::Errors::MissingUsername)
+      lambda {
+        Fishbowl::Connection.login(password: 'secret')
+      }.should raise_error(Fishbowl::Errors::MissingUsername)
     end
 
     it 'should require a password' do
-      lambda { Fishbowl::Connection.login(username: 'johndoe') }.should raise_error(Fishbowl::Errors::MissingPassword)
+      lambda {
+        Fishbowl::Connection.login(username: 'johndoe')
+      }.should raise_error(Fishbowl::Errors::MissingPassword)
     end
 
     it 'should connect to Fishbowl API' do

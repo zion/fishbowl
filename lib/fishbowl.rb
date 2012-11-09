@@ -24,27 +24,13 @@ module Fishbowl # :nodoc:
     end
 
     def self.login(options = {})
+      raise Fishbowl::Errors::ConnectionNotEstablished if @@connection.nil?
       raise Fishbowl::Errors::MissingUsername if options[:username].nil?
       raise Fishbowl::Errors::MissingPassword if options[:password].nil?
 
       @@username, @@password = options[:username], options[:password]
 
-      builder = Nokogiri::XML::Builder.new do |xml|
-        xml.FbiXml {
-          xml.Ticket
-          xml.FbiMsgsRq{
-            xml.LoginRq {
-              xml.IAID          "fishbowl-ruby"
-              xml.IAName        "Fishbowl Ruby Gem"
-              xml.IADescription "Fishbowl Ruby Gem"
-              xml.UserName      @@username
-              xml.UserPassword  encoded_password
-            }
-          }
-        }
-      end
-
-      write(builder)
+      Fishbowl::Objects::BaseObject.new.send_request(login_request, true)
 
       # TODO Do something with the response
     end
@@ -71,9 +57,24 @@ module Fishbowl # :nodoc:
 
     def self.close
       @@connection.close
+      @@connection = nil
     end
 
   private
+
+    def self.login_request
+      Nokogiri::XML::Builder.new do |xml|
+        xml.request {
+          xml.LoginRq {
+            xml.IAID          "fishbowl-ruby"
+            xml.IAName        "Fishbowl Ruby Gem"
+            xml.IADescription "Fishbowl Ruby Gem"
+            xml.UserName      @@username
+            xml.UserPassword  encoded_password
+          }
+        }
+      end
+    end
 
     def self.encoded_password
       Base64.encode64(@@password)
