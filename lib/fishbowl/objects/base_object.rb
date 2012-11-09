@@ -2,15 +2,13 @@ module Fishbowl::Objects
   class BaseObject
     attr_accessor :ticket
 
-  protected
-
     def send_request(request)
       Fishbowl::Connection.send(build_request(request))
     end
 
   private
 
-    def build_request(request)
+    def build_request(request, fragment = false)
       Nokogiri::XML::Builder.new do |xml|
         xml.FbiXml {
           if @ticket.nil?
@@ -20,7 +18,8 @@ module Fishbowl::Objects
           end
 
           xml.FbiMsgsRq {
-            xml.send(request)
+            xml << request.doc.xpath("request/*").to_xml if fragment
+            xml.send(request.to_s) unless fragment
           }
         }
       end

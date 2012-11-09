@@ -40,6 +40,11 @@ describe Fishbowl::Objects::BaseObject do
         base_object.send(:build_request, "SampleRequest").to_xml.should eq(empty_ticket_builder.to_xml)
       end
 
+      it "should accept an XML Builder" do
+        builder = Nokogiri::XML::Builder.new { |xml| xml.request { xml.SampleRequest } }
+        base_object.send(:build_request, builder, true).to_xml.should eq(empty_ticket_builder.to_xml)
+      end
+
       context "when ticket is empty" do
         it "should return an empty Nokogiri::XML::Builder" do
           base_object.send(:build_request, "SampleRequest").to_xml.should eq(empty_ticket_builder.to_xml)

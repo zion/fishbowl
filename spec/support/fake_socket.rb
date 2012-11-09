@@ -1,13 +1,14 @@
 require 'socket'
+require 'singleton'
 require 'rspec/mocks'
 
 TCP_NEW = TCPSocket.method(:new) unless defined? TCP_NEW
 
-#
-# Example:
-#   mock_tcp_next_request("<xml>junk</xml>")
-#
 class FakeTCPSocket
+  include Singleton
+
+  attr_reader :last_write
+
   def readline(some_text = nil)
     return @canned_response
   end
@@ -16,10 +17,11 @@ class FakeTCPSocket
   end
 
   def write(some_text = nil)
+    @last_write = some_text
   end
 
   def readchar
-      return 6
+    return 6
   end
 
   def read(num)
@@ -27,21 +29,13 @@ class FakeTCPSocket
   end
 
   def set_canned(response)
-     @canned_response = response
+    @canned_response = response
   end
 end
 
 def mock_tcp_connection
   TCPSocket.stub(:new).and_return {
-    FakeTCPSocket.new
-  }
-end
-
-def mock_tcp_next_request(string)
-  TCPSocket.stub!(:new).and_return {
-    cm = FakeTCPSocket.new
-    cm.set_canned(string)
-    cm
+    FakeTCPSocket.instance
   }
 end
 
