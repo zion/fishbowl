@@ -34,7 +34,7 @@ describe Fishbowl::Connection do
     end
   end
 
-  describe '#close' do
+  describe '.close' do
     pending
   end
 end

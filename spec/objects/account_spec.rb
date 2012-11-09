@@ -31,8 +31,7 @@ describe Fishbowl::Objects::Account do
 
     it "should properly format the request" do
       Fishbowl::Objects::Account.get_list
-
-      connection.last_write.should eq(proper_request.to_xml)
+      connection.last_write.should be_equivalent_to(proper_request.to_xml)
     end
 
     it "should return array of Accounts"
@@ -43,7 +42,23 @@ describe Fishbowl::Objects::Account do
   end
 
   describe ".get_balance" do
-    it "should properly format the request"
+    let(:proper_request) do
+      Nokogiri::XML::Builder.new do |xml|
+        xml.FbiXml {
+          xml.Ticket
+          xml.FbiMsgsRq {
+            xml.GetAccountBalanceRq {
+              xml.Account "General Account"
+            }
+          }
+        }
+      end
+    end
+
+    it "should properly format the request" do
+      Fishbowl::Objects::Account.get_balance("General Account")
+      connection.last_write.should be_equivalent_to(proper_request.to_xml)
+    end
 
     it "should return the balance for the requested Account"
   end

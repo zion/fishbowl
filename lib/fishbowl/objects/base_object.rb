@@ -2,8 +2,8 @@ module Fishbowl::Objects
   class BaseObject
     attr_accessor :ticket
 
-    def send_request(request)
-      Fishbowl::Connection.send(build_request(request))
+    def send_request(request, fragment = false)
+      Fishbowl::Connection.send(build_request(request, fragment))
     end
 
   private

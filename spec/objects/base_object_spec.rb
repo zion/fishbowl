@@ -37,17 +37,17 @@ describe Fishbowl::Objects::BaseObject do
   context "Private Methods" do
     describe "#build_request" do
       it "should build a request document" do
-        base_object.send(:build_request, "SampleRequest").to_xml.should eq(empty_ticket_builder.to_xml)
+        base_object.send(:build_request, "SampleRequest").to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
       end
 
       it "should accept an XML Builder" do
         builder = Nokogiri::XML::Builder.new { |xml| xml.request { xml.SampleRequest } }
-        base_object.send(:build_request, builder, true).to_xml.should eq(empty_ticket_builder.to_xml)
+        base_object.send(:build_request, builder, true).to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
       end
 
       context "when ticket is empty" do
         it "should return an empty Nokogiri::XML::Builder" do
-          base_object.send(:build_request, "SampleRequest").to_xml.should eq(empty_ticket_builder.to_xml)
+          base_object.send(:build_request, "SampleRequest").to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
         end
       end
 
@@ -57,7 +57,7 @@ describe Fishbowl::Objects::BaseObject do
         end
 
         it "should return the ticket wrapped in a Nokogiri::XML::Builder" do
-          base_object.send(:build_request, "SampleRequest").to_xml.should eq(ticket_builder.to_xml)
+          base_object.send(:build_request, "SampleRequest").to_xml.should be_equivalent_to(ticket_builder.to_xml)
         end
       end
     end
