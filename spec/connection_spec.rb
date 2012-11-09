@@ -54,4 +54,34 @@ describe Fishbowl::Connection do
   describe '.close' do
     pending
   end
+
+  describe '.host' do
+    it 'should return the host value' do
+      Fishbowl::Connection.connect(host: 'localhost')
+      Fishbowl::Connection.host.should eq('localhost')
+    end
+  end
+
+  describe '.port' do
+    it "should return the port value" do
+      Fishbowl::Connection.connect(host: 'localhost', port: 1234)
+      Fishbowl::Connection.port.should eq(1234)
+    end
+  end
+
+  describe '.username' do
+    it 'should return the username value' do
+      Fishbowl::Connection.connect(host: 'localhost')
+      Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
+      Fishbowl::Connection.username.should eq('johndoe')
+    end
+  end
+
+  describe '.password' do
+    it 'should return the password value' do
+      Fishbowl::Connection.connect(host: 'localhost')
+      Fishbowl::Connection.login(username: 'johndoe', password: 'secret')
+      Fishbowl::Connection.password.should eq('secret')
+    end
+  end
 end
