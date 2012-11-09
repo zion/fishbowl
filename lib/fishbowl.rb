@@ -30,9 +30,7 @@ module Fishbowl # :nodoc:
 
       @username, @password = options[:username], options[:password]
 
-      Fishbowl::Objects::BaseObject.new.send_request(login_request, true)
-
-      code, message, _ = get_response('LoginRs')
+      code, message, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request, 'LoginRs')
 
       Fishbowl::Errors.confirm_success_or_raise(code, message)
 
@@ -55,22 +53,14 @@ module Fishbowl # :nodoc:
       @password
     end
 
-    def self.send(request)
+    def self.send(request, expected_response = 'FbiMsgRs')
       write(request)
+      get_response(expected_response)
     end
 
     def self.close
       @connection.close
       @connection = nil
-    end
-
-    def self.get_response(expectation = 'FbiMsgRs')
-      response = read
-
-      status_code = response.xpath("//#{expectation}/@statusCode").first.value
-      status_message = response.xpath("//#{expectation}/@statusMessage").first.value
-
-      [status_code, status_message, response]
     end
 
   private
@@ -101,9 +91,14 @@ module Fishbowl # :nodoc:
       @connection.write(body)
     end
 
-    def self.read
+    def self.get_response(expectation)
       length = @connection.recv(3).unpack('L>').join('').to_i
-      Nokogiri::XML.parse(@connection.recv(length))
+      response = Nokogiri::XML.parse(@connection.recv(length))
+
+      status_code = response.xpath("//#{expectation}/@statusCode").first.value
+      status_message = response.xpath("//#{expectation}/@statusMessage").first.value
+
+      [status_code, status_message, response]
     end
 
   end
