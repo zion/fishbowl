@@ -6,7 +6,11 @@ def mock_response(response = 'SampleRs')
       xml.Ticket
 
       xml.FbiMsgsRs(statusCode: '1000', statusMessage: "Success!") {
-        xml.send(response, {statusCode: '1000', statusMessage: "Success!"})
+        if response.respond_to?(:to_xml)
+          xml << response.doc.xpath("response/*").to_xml
+        else
+          xml.send(response, {statusCode: '1000', statusMessage: "Success!"})
+        end
       }
     }
   end

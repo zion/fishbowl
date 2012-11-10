@@ -26,8 +26,23 @@ describe Fishbowl::Objects::Account do
       end
     end
 
-    let(:canned_response) do
+    before :each do
+      canned_response = Nokogiri::XML::Builder.new do |xml|
+        xml.response {
+          xml.GetAccountListRs(statusCode: '1000', statusMessage: "Success!") {
+            (rand(3) + 2).times do |i|
+              xml.Account {
+                xml.Name          "Demo Account #{i}"
+                xml.AccountingID  "DEMO#{i}"
+                xml.AccountType   i
+                xml.Balance       "1200.00"
+              }
+            end
+          }
+        }
+      end
 
+      mock_the_response(canned_response)
     end
 
     it "should properly format the request" do
@@ -35,10 +50,8 @@ describe Fishbowl::Objects::Account do
       connection.last_write.should be_equivalent_to(proper_request.to_xml)
     end
 
-    it "should return array of Accounts"
-
-    it "should return empty array when no accounts" do
-
+    it "should return array of Accounts" do
+      Fishbowl::Objects::Account.get_list.should be_an(Array)
     end
   end
 
@@ -56,11 +69,30 @@ describe Fishbowl::Objects::Account do
       end
     end
 
+    before :each do
+      canned_response = Nokogiri::XML::Builder.new do |xml|
+        xml.response {
+          xml.GetAccountBalanceRs(statusCode: '1000', statusMessage: "Success!") {
+            xml.Account {
+              xml.Name          "Demo Account"
+              xml.AccountingID  "DEMO"
+              xml.AccountType   9
+              xml.Balance       "1200.00"
+            }
+          }
+        }
+      end
+
+      mock_the_response(canned_response)
+    end
+
     it "should properly format the request" do
       Fishbowl::Objects::Account.get_balance("General Account")
       connection.last_write.should be_equivalent_to(proper_request.to_xml)
     end
 
-    it "should return the balance for the requested Account"
+    it "should return the balance for the requested Account" do
+      Fishbowl::Objects::Account.get_balance("General Account").should be_a(String)
+    end
   end
 end
