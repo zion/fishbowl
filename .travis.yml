@@ -1,17 +1,21 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - jruby-19mode # JRuby in 1.9 mode
+  - "1.9.3"
+  - jruby-19mode
+  - jruby-head
   - rbx-19mode
 jdk:
   - openjdk7
   - oraclejdk7
   - openjdk6
+allow_failures:
+  - rvm: jruby-head
+  - rvm: rbx-19mode
 matrix:
   exclude:
-    - rvm: 1.9.3
+    - rvm: "1.9.3"
       jdk: oraclejdk7
-    - rvm: 1.9.3
+    - rvm: "1.9.3"
       jdk: openjdk6
     - rvm: rbx-19mode
       jdk: oraclejdk7
