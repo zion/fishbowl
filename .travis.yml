@@ -8,9 +8,6 @@ jdk:
   - openjdk7
   - oraclejdk7
   - openjdk6
-allow_failures:
-  - rvm: jruby-head
-  - rvm: rbx-19mode
 matrix:
   exclude:
     - rvm: "1.9.3"
@@ -21,3 +18,6 @@ matrix:
       jdk: oraclejdk7
     - rvm: rbx-19mode
       jdk: openjdk6
+  allow_failures:
+    - rvm: jruby-head
+    - rvm: rbx-19mode
