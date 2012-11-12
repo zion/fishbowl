@@ -4,6 +4,8 @@ require 'singleton'
 
 require 'nokogiri'
 
+require 'fishbowl/ext'
+
 require 'fishbowl/version'
 require 'fishbowl/errors'
 require 'fishbowl/objects'
