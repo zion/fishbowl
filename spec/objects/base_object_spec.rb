@@ -62,7 +62,6 @@ describe Fishbowl::Objects::BaseObject do
   context "Protected Methods" do
     describe "#parse_attributes" do
       it "should parse the requested attributes from the supplied xml" do
-        attributes = %w{ID DataID Name}
         parse_xml = Nokogiri::XML::Builder.new do |xml|
           xml.parse {
             xml.ID
@@ -72,7 +71,14 @@ describe Fishbowl::Objects::BaseObject do
         end
         parse_xml = Nokogiri::XML.parse(parse_xml.to_xml)
 
-        base_object.send(:parse_attributes, attributes, parse_xml.xpath('parse'))
+        class Fishbowl::Objects::BaseObject
+          @@attributes = %w{ID DataID Name}
+        end
+
+        base_object.instance_variable_set("@xml", parse_xml.xpath('parse'))
+
+        base_object.send(:parse_attributes)
+
         base_object.instance_variables.should include(:@db_id)
         base_object.instance_variables.should include(:@data_id)
         base_object.instance_variables.should include(:@name)

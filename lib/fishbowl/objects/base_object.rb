@@ -1,5 +1,6 @@
 module Fishbowl::Objects
   class BaseObject
+    @@attributes = []
     attr_accessor :ticket
 
     def send_request(request, expected_response = 'FbiMsgRs')
@@ -10,8 +11,8 @@ module Fishbowl::Objects
 
   protected
 
-    def parse_attributes(attributes = [], xml)
-      attributes.each do |field|
+    def parse_attributes
+      @@attributes.each do |field|
         field = field.to_s
 
         if field == 'ID'
@@ -20,7 +21,7 @@ module Fishbowl::Objects
           instance_var = '@' + field.gsub(/ID/, 'Id').underscore
         end
 
-        value = xml.xpath(field).first.nil? ? nil : xml.xpath(field).first.inner_text
+        value = @xml.xpath(field).first.nil? ? nil : @xml.xpath(field).first.inner_text
         instance_variable_set(instance_var, value)
       end
     end
