@@ -1,18 +1,46 @@
 require 'rubygems'
-require 'bundler/setup'
+require 'rspec'
 
-require 'simplecov'
-SimpleCov.start do
-  add_filter "/spec/"
-end
+if ENV['CI'] != 'true'
+  require 'spork'
 
-require 'equivalent-xml/rspec_matchers'
+  Spork.prefork do
+    unless ENV['DRB']
+      require 'simplecov'
+      SimpleCov.start do
+        add_filter "/spec/"
+      end
+    end
 
-require 'fishbowl'
+    require 'fishbowl'
 
-require 'support/fake_socket'
-require 'support/response_mocks'
+    require 'equivalent-xml/rspec_matchers'
 
-RSpec.configure do |config|
-  # some (optional) config here
+    require 'support/fake_socket'
+    require 'support/response_mocks'
+
+    RSpec.configure do |config|
+      # some (optional) config here
+    end
+  end
+
+  Spork.each_run do
+    if ENV['DRB']
+      require 'simplecov'
+      SimpleCov.start do
+        add_filter "/spec/"
+      end
+    end
+  end
+else
+  require 'fishbowl'
+
+  require 'equivalent-xml/rspec_matchers'
+
+  require 'support/fake_socket'
+  require 'support/response_mocks'
+
+  RSpec.configure do |config|
+    # some (optional) config here
+  end
 end
