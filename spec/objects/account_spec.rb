@@ -14,6 +14,39 @@ describe Fishbowl::Objects::Account do
 
   let(:connection) { FakeTCPSocket.instance }
 
+  describe "instances" do
+
+    let(:account) {
+      builder = Nokogiri::XML::Builder.new do |xml|
+        xml.base {
+          xml.Account {
+            xml.Name          "Demo Account"
+            xml.AccountingID  "DEMO"
+            xml.AccountType   1
+            xml.Balance       "1200.00"
+          }
+        }
+      end
+      Fishbowl::Objects::Account.new(builder.doc.xpath('//Account'))
+    }
+
+    it "should have a name" do
+      account.respond_to?(:name).should be_true
+    end
+
+    it "should have an accounting id" do
+      account.respond_to?(:accounting_id).should be_true
+    end
+
+    it "should have a type" do
+      account.respond_to?(:type).should be_true
+    end
+
+    it "should have a balance" do
+      account.respond_to?(:balance).should be_true
+    end
+  end
+
   describe ".get_list" do
     let(:proper_request) do
       Nokogiri::XML::Builder.new do |xml|
