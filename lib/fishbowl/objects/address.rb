@@ -5,16 +5,7 @@ module Fishbowl::Objects
     attr_reader :country, :address_information_list
 
     def initialize(address_xml)
-      %w{ID Name Attention Street City Zip LocationGroupID Default Residential Type}.each do |field|
-        if field == 'ID'
-          instance_var = '@db_id'
-        else
-          instance_var = '@' + field.gsub(/ID/, 'Id').underscore
-        end
-
-        value = address_xml.xpath(field).first.nil? ? nil : address_xml.xpath(field).first.inner_text
-        instance_variable_set(instance_var, value)
-      end
+      parse_attributes(%w{ID Name Attention Street City Zip LocationGroupID Default Residential Type}, address_xml)
 
       @temp_account
       @state = get_state(address_xml)
@@ -46,58 +37,31 @@ module Fishbowl::Objects
 
   end
 
-  class State
+  class State < BaseObject
     attr_reader :db_id, :name, :code, :country_id
 
     def initialize(state_xml)
-      %w{ID Name Code CountryID}.each do |field|
-        if field == 'ID'
-          instance_var = '@db_id'
-        else
-          instance_var = '@' + field.gsub(/ID/, 'Id').underscore
-        end
-
-        value = state_xml.xpath(field).first.nil? ? nil : state_xml.xpath(field).first.inner_text
-        instance_variable_set(instance_var, value)
-      end
+      parse_attributes(%w{ID Name Code CountryID}, state_xml)
 
       self
     end
   end
 
-  class Country
+  class Country < BaseObject
     attr_reader :db_id, :name, :code
 
     def initialize(country_xml)
-      %w{ID Name Code}.each do |field|
-        if field == 'ID'
-          instance_var = '@db_id'
-        else
-          instance_var = '@' + field.gsub(/ID/, 'Id').underscore
-        end
-
-        value = country_xml.xpath(field).first.nil? ? nil : country_xml.xpath(field).first.inner_text
-        instance_variable_set(instance_var, value)
-      end
+      parse_attributes(%w{ID Name Code}, country_xml)
 
       self
     end
   end
 
-  class AddressInformation
+  class AddressInformation < BaseObject
     attr_reader :db_id, :name, :data, :default, :type
 
     def initialize(address_info_xml)
-      %w{ID Name Data Default Type}.each do |field|
-        if field == 'ID'
-          instance_var = '@db_id'
-        else
-          instance_var = '@' + field.gsub(/ID/, 'Id').underscore
-        end
-
-        value = address_info_xml.xpath(field).first.nil? ? nil : address_info_xml.xpath(field).first.inner_text
-        instance_variable_set(instance_var, value)
-      end
+      parse_attributes(%w{ID Name Data Default Type}, address_info_xml)
 
       self
     end

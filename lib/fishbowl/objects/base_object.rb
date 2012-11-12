@@ -8,6 +8,23 @@ module Fishbowl::Objects
       [code, message, response]
     end
 
+  protected
+
+    def parse_attributes(attributes = [], xml)
+      attributes.each do |field|
+        field = field.to_s
+
+        if field == 'ID'
+          instance_var = '@db_id'
+        else
+          instance_var = '@' + field.gsub(/ID/, 'Id').underscore
+        end
+
+        value = xml.xpath(field).first.nil? ? nil : xml.xpath(field).first.inner_text
+        instance_variable_set(instance_var, value)
+      end
+    end
+
   private
 
     def build_request(request)

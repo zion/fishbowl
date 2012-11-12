@@ -3,10 +3,7 @@ module Fishbowl::Objects
     attr_reader :name, :accounting_id, :type, :balance
 
     def initialize(account_xml)
-      @name = account_xml.xpath("Name").first.inner_text
-      @accounting_id = account_xml.xpath("AccountingID").first.inner_text
-      @type = account_xml.xpath("AccountType").first.inner_text
-      @balance = account_xml.xpath("Balance").first.inner_text
+      parse_attributes(%w{Name AccountingID Type Balance}, account_xml)
 
       self
     end
