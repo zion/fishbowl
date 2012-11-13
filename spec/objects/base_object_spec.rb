@@ -60,6 +60,12 @@ describe Fishbowl::Objects::BaseObject do
   end
 
   context "Protected Methods" do
+    describe ".attributes" do
+      it "should return an array containing 'ID' by default" do
+        Fishbowl::Objects::BaseObject.attributes.should eq(["ID"])
+      end
+    end
+
     describe "#parse_attributes" do
       it "should parse the requested attributes from the supplied xml" do
         parse_xml = Nokogiri::XML::Builder.new do |xml|
