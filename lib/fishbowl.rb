@@ -8,6 +8,7 @@ require 'fishbowl/ext'
 
 require 'fishbowl/version'
 require 'fishbowl/errors'
+require 'fishbowl/requests'
 require 'fishbowl/objects'
 
 module Fishbowl # :nodoc:
