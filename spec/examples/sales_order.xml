@@ -1,0 +1,47 @@
+<SalesOrder>
+  <Salesman>admin</Salesman>
+  <Number>500100</Number>
+  <Status>20</Status>
+  <Carrier>Will Call</Carrier>
+  <FirstShipDate>2007-08-29T00:00:00</FirstShipDate>
+  <CreatedDate>2007-08-29T00:00:00</CreatedDate>
+  <IssuedDate>2007-08-29T16:48:56</IssuedDate>
+  <TaxRatePercentage>0.0625</TaxRatePercentage>
+  <TaxRateName>Utah</TaxRateName>
+  <ShippingTerms>Prepaid &amp; Billed</ShippingTerms>
+  <PaymentTerms>COD</PaymentTerms>
+  <CustomerContact>Beach Bike</CustomerContact>
+  <CustomerName>Beach Bike</CustomerName>
+  <FOB>Origin</FOB>
+  <QuickBooksClassName>Salt Lake City</QuickBooksClassName>
+  <LocationGroup>SLC</LocationGroup>
+  <BillTo>
+    <Name>Beach Bike</Name>
+    <AddressField>555 Suntan Ave.</AddressField>
+    <City>Santa Barbara</City>
+    <Zip>93101</Zip>
+  </BillTo>
+  <Ship>
+    <Name>Beach Bike</Name>
+    <AddressField>555 Suntan Ave.</AddressField>
+    <Zip>93101</Zip>
+    <Country>US</Country>
+    <State>California</State>
+  </Ship>
+  <SalesOrderItem>
+    <ID>-1</ID>
+    <ProductNumber>BTY100</ProductNumber>
+    <SOID>93</SOID>
+    <Description>Battery Pack</Description>
+    <Taxable>true</Taxable>
+    <Quantity>1</Quantity>
+    <ProductPrice>95.00</ProductPrice>
+    <TotalPrice>95.00</TotalPrice>
+    <UOMCode>ea</UOMCode>
+    <ItemType>10</ItemType>
+    <Status>10</Status>
+    <QuickBooksClassName>Salt Lake City</QuickBooksClassName>
+    <NewItemFlag>false</NewItemFlag>
+    <LineNumber>1</LineNumber>
+  </SalesOrderItem>
+</SalesOrder>

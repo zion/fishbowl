@@ -1,0 +1,14 @@
+<Location>
+  <LocationID>0</LocationID>
+  <TypeID>0</TypeID>
+  <Name/>
+  <Description/>
+  <CountedAsAvailable>true</CountedAsAvailable>
+  <Active>true</Active>
+  <Pickable>true</Pickable>
+  <Receivable>true</Receivable>
+  <LocationGroupID>0</LocationGroupID>
+  <LocationGroupName/>
+  <TagID>-1</TagID>
+  <TagNumber>-1</TagNumber>
+</Location>

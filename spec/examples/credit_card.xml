@@ -1,0 +1,10 @@
+<CreditCard>
+  <CardNumber>411111111111111</CardNumber>
+  <CardExpMonth>02</CardExpMonth>
+  <CardExpYear>19</CardExpYear>
+  <SecurityCode>523</SecurityCode>
+  <NameOnCard>John Doe</NameOnCard>
+  <CardAddress>123 S Riverdale Road</CardAddress>
+  <CardZipCode>84172</CardZipCode>
+  <CardCountryCode>US</CardCountryCode>
+</CreditCard>

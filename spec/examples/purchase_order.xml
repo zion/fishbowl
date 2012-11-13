@@ -1,0 +1,53 @@
+<PurchaseOrder>
+  <ID>-1</ID>
+  <Note>Originating Sales Order #50047Originating Notes:</Note>
+  <CreatedDate>2010-05-18T14:03:32</CreatedDate>
+  <FirstShipDate>2010-05-18T14:03:32</FirstShipDate>
+  <Number>10070</Number>
+  <Status>10</Status>
+  <Buyer>admin</Buyer>
+  <RemitTo>
+    <Name>Mike's Bikes</Name>
+    <AddressField>2245 South 3000 East</AddressField>
+    <City>Salt Lake City</City>
+    <Zip/>
+    <Country>US</Country>
+    <State>Utah</State>
+  </RemitTo>
+  <Ship>
+    <Name>Bicycles Unlimited</Name>
+    <AddressField>300 W North Temple</AddressField>
+    <City/>
+    <Zip>84103</Zip>
+    <Country>US</Country>
+    <State>Utah</State>
+  </Ship>
+  <DeliverTo/>
+  <ShippingCost>0</ShippingCost>
+  <ShippingTerms>10</ShippingTerms>
+  <PaymentTerms>COD</PaymentTerms>
+  <FOB>Origin</FOB>
+  <VendorContact/>
+  <VendorName>Mike's Bikes</VendorName>
+  <VendorSONum/>
+  <QuickBooksClassName>Salt Lake City</QuickBooksClassName>
+  <LocationGroup>SLC</LocationGroup>
+  <Carrier>Will Call</Carrier>
+  <PurchaseOrderItem>
+    <PartNumber>BB2001</PartNumber>
+    <ID>105</ID>
+    <Description>Mountain Bike</Description>
+    <Quantity>1</Quantity>
+    <QuantityFulfilled>0</QuantityFulfilled>
+    <QuantityPicked>0</QuantityPicked>
+    <UOMCode>ea</UOMCode>
+    <VendorPartNum>BB2001</VendorPartNum>
+    <ItemType>10</ItemType>
+    <Status>10</Status>
+    <Note/>
+    <UnitCost>450</UnitCost>
+    <QuickBooksClassName>Salt Lake City</QuickBooksClassName>
+    <RevisionLevel/>
+    <ScheduledFulfillmentDate>2010-05-18T14:03:32</ScheduledFulfillmentDate>
+  </PurchaseOrderItem>
+</PurchaseOrder>

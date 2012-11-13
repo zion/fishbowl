@@ -1,0 +1,10 @@
+<Report>
+  <ID>164</ID>
+  <Name>New Report</name>
+  <Path>../reports/Custom/NewReport.jasper</Path>
+  <ReportTreeID>19</ReportTreeID>
+  <Description>Description of the report</Description>
+  <ActiveFlag>true</ActiveFlag>
+  <ReadOnly>false</ReadOnly>
+  <UserID>1</UserID>
+</Report>

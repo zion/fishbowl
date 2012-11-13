@@ -1,0 +1,32 @@
+<SalesOrderItem>
+  <ID>-1</ID>
+  <ProductNumber>BTY100-Core</ProductNumber>
+  <SOID>94</SOID>
+  <Description>Battery Pack</Description>
+  <Taxable>true</Taxable>
+  <Quantity>1</Quantity>
+  <ProductPrice>-95.00</ProductPrice>
+  <TotalPrice>-95.00</TotalPrice>
+  <UOMCode>ea</UOMCode>
+  <ItemType>20</ItemType>
+  <Status>10</Status>
+  <QuickBooksClassName>Salt Lake City</QuickBooksClassName>
+  <NewItemFlag>false</NewItemFlag>
+  <LineNumber>2</LineNumber>
+  <KitItemFlag>false</KitItemFlag>
+  <AdjustmentAmount>2.99</AdjustmentAmount>
+  <AdjustPercentage>13</AdjustPercentage>
+  <CustomerPartNum>12345</CustomerPartNum>
+  <DateLastFulfillment>2010-05-18 14:02:21</DateLastFulfillment>
+  <DateLastModified>2010-05-18 14:02:21</DateLastModified>
+  <DateScheduledFulfillment>2010-05-18 14:02:21</DateScheduledFulfillment>
+  <ExchangeSOLineItem>1</ExchangeSOLineItem>
+  <ItemAdjustID>1</ItemAdjustID>
+  <QtyFulfilled>12</QtyFulfilled>
+  <QtyPicked>14</QtyPicked>
+  <RevisionLevel>3</RevisionLevel>
+  <TotalCost>2999.01</TotalCost>
+  <TaxableFlag>true</TaxableFlag>
+  <TaxID>1</TaxID>
+  <TaxRate>.0012</TaxRate>
+</SalesOrderItem>

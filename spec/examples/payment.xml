@@ -1,0 +1,6 @@
+<Payment>
+  <Amount>50</Amount>
+  <SalesOrderNumber>50032</SalesOrderNumber>
+  <PaymentDate>2011-08-26T00:12:34</PaymentDate>
+  <PaymentMethod>Cash</PaymentMethod>
+</Payment>
