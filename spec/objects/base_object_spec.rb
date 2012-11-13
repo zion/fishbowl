@@ -45,6 +45,12 @@ describe Fishbowl::Objects::BaseObject do
       mock_the_response
     end
 
+    it "should include the ticket value when it's set" do
+      base_object.ticket = ticket
+      base_object.send_request("SampleRq", "SampleRs")
+      connection.last_write.should be_equivalent_to(ticket_builder.to_xml)
+    end
+
     it "should send the specified request" do
       base_object.send_request("SampleRq", "SampleRs")
       connection.last_write.should be_equivalent_to(empty_ticket_builder.to_xml)
@@ -97,35 +103,6 @@ describe Fishbowl::Objects::BaseObject do
         base_object.instance_variable_get(:@data_id).should eq("15")
         base_object.instance_variable_get(:@name).should eq("Demo")
         base_object.instance_variable_get(:@sku).should eq("DEMO")
-      end
-    end
-  end
-
-  context "Private Methods" do
-    describe "#build_request" do
-      it "should build a request document" do
-        base_object.send(:build_request, "SampleRq").to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
-      end
-
-      it "should accept an XML Builder" do
-        builder = Nokogiri::XML::Builder.new { |xml| xml.request { xml.SampleRq } }
-        base_object.send(:build_request, builder).to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
-      end
-
-      context "when ticket is empty" do
-        it "should return an empty Nokogiri::XML::Builder" do
-          base_object.send(:build_request, "SampleRq").to_xml.should be_equivalent_to(empty_ticket_builder.to_xml)
-        end
-      end
-
-      context "when ticket is set" do
-        before :each do
-          base_object.ticket = ticket
-        end
-
-        it "should return the ticket wrapped in a Nokogiri::XML::Builder" do
-          base_object.send(:build_request, "SampleRq").to_xml.should be_equivalent_to(ticket_builder.to_xml)
-        end
       end
     end
   end
