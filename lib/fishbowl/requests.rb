@@ -61,5 +61,27 @@ module Fishbowl
 
       Fishbowl::Objects::BaseObject.new.send_request(request, 'AddSOItemRs')
     end
+
+    def self.adjust_inventory(options = {})
+      options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+
+      %w{tag_number quantity}.each do |required_field|
+        raise ArgumentError if options[required_field.to_sym].nil?
+      end
+
+      raise ArgumentError unless options[:tracking].nil? || options[:tracking].is_a?(Fishbowl::Object::Tracking)
+
+      request = Nokogiri::XML::Builder.new do |xml|
+        xml.request {
+          xml.AdjustInventoryRq {
+            xml.TagNum options[:tag_number]
+            xml.Quantity options[:quantity]
+            xml.Tracking options[:tracking] unless options[:tracking].nil?
+          }
+        }
+      end
+
+      Fishbowl::Objects::BaseObject.new.send_request(request, 'AdjustInventoryRs')
+    end
   end
 end
