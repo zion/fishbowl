@@ -1,8 +1,10 @@
 module Fishbowl::Objects
   class Account < BaseObject
-    @@attributes = %w{Name AccountingID Type Balance}
-
     attr_reader :name, :accounting_id, :type, :balance
+
+    def self.attributes
+      %w{Name AccountingID Type Balance}
+    end
 
     def initialize(account_xml)
       @xml = account_xml

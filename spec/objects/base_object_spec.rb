@@ -64,15 +64,18 @@ describe Fishbowl::Objects::BaseObject do
       it "should parse the requested attributes from the supplied xml" do
         parse_xml = Nokogiri::XML::Builder.new do |xml|
           xml.parse {
-            xml.ID
-            xml.DataID
-            xml.Name
+            xml.ID "5"
+            xml.DataID "15"
+            xml.Name "Demo"
+            xml.SKU "DEMO"
           }
         end
         parse_xml = Nokogiri::XML.parse(parse_xml.to_xml)
 
         class Fishbowl::Objects::BaseObject
-          @@attributes = %w{ID DataID Name}
+          def self.attributes
+            %w{ID DataID Name SKU}
+          end
         end
 
         base_object.instance_variable_set("@xml", parse_xml.xpath('parse'))
@@ -82,6 +85,12 @@ describe Fishbowl::Objects::BaseObject do
         base_object.instance_variables.should include(:@db_id)
         base_object.instance_variables.should include(:@data_id)
         base_object.instance_variables.should include(:@name)
+        base_object.instance_variables.should include(:@sku)
+
+        base_object.instance_variable_get(:@db_id).should eq("5")
+        base_object.instance_variable_get(:@data_id).should eq("15")
+        base_object.instance_variable_get(:@name).should eq("Demo")
+        base_object.instance_variable_get(:@sku).should eq("DEMO")
       end
     end
   end
