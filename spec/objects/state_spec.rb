@@ -4,33 +4,14 @@ describe Fishbowl::Objects::State do
   describe "instances" do
 
     let(:state) {
-      builder = Nokogiri::XML::Builder.new do |xml|
-        xml.base {
-          xml.State {
-            xml.ID
-            xml.Code
-            xml.Name
-            xml.CountryID
-          }
-        }
-      end
-      Fishbowl::Objects::State.new(builder.doc.xpath('//State'))
+      doc = Nokogiri::XML.parse(example_file('address.xml'))
+      Fishbowl::Objects::State.new(doc.xpath('//State'))
     }
 
-    it "should have a db id" do
-      state.respond_to?(:db_id).should be_true
-    end
-
-    it "should have an name" do
-      state.respond_to?(:name).should be_true
-    end
-
-    it "should have a code" do
-      state.respond_to?(:code).should be_true
-    end
-
-    it "should have a country id" do
-      state.respond_to?(:country_id).should be_true
+    it "should properly initialize from example file" do
+      state.name.should eq("Utah")
+      state.code.should eq("UT")
+      state.country_id.should eq("2")
     end
   end
 end
