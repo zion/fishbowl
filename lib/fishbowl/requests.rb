@@ -9,7 +9,40 @@ module Fishbowl
 
       raise ArgumentError unless options[:tracking].nil? || options[:tracking].is_a?(Fishbowl::Object::Tracking)
 
-      request = Nokogiri::XML::Builder.new do |xml|
+      request = add_inventory_request(options)
+      Fishbowl::Objects::BaseObject.new.send_request(request, 'AddInventoryRs')
+    end
+
+    def self.add_sales_order_item(options = {})
+      options = options.symbolize_keys
+
+      %w{order_number id product_number sales_order_id description taxable
+         quantity product_price total_price uom_code item_type status
+         quickbooks_class_name new_item_flag}.each do |required_field|
+        raise ArgumentError if options[required_field.to_sym].nil?
+      end
+
+      request = add_sales_order_item_request(options)
+      Fishbowl::Objects::BaseObject.new.send_request(request, 'AddSOItemRs')
+    end
+
+    def self.adjust_inventory(options = {})
+      options = options.symbolize_keys
+
+      %w{tag_number quantity}.each do |required_field|
+        raise ArgumentError if options[required_field.to_sym].nil?
+      end
+
+      raise ArgumentError unless options[:tracking].nil? || options[:tracking].is_a?(Fishbowl::Object::Tracking)
+
+      request = adjust_inventory_request(options)
+      Fishbowl::Objects::BaseObject.new.send_request(request, 'AdjustInventoryRs')
+    end
+
+  private
+
+    def self.add_inventory_request(options)
+      Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.AddInventoryRq {
             xml.PartNum options[:part_number]
@@ -23,20 +56,10 @@ module Fishbowl
           }
         }
       end
-
-      Fishbowl::Objects::BaseObject.new.send_request(request, 'AddInventoryRs')
     end
 
-    def self.add_sales_order_item(options = {})
-      options = options.symbolize_keys
-
-      %w{order_number id product_number sales_order_id description taxable
-         quantity product_price total_price uom_code item_type status
-         quickbooks_class_name new_item_flag}.each do |required_field|
-        raise ArgumentError if options[required_field.to_sym].nil?
-      end
-
-      request = Nokogiri::XML::Builder.new do |xml|
+    def self.add_sales_order_item_request(options)
+      Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.AddSOItemRq {
             xml.OrderNum options[:order_number]
@@ -58,20 +81,10 @@ module Fishbowl
           }
         }
       end
-
-      Fishbowl::Objects::BaseObject.new.send_request(request, 'AddSOItemRs')
     end
 
-    def self.adjust_inventory(options = {})
-      options = options.symbolize_keys
-
-      %w{tag_number quantity}.each do |required_field|
-        raise ArgumentError if options[required_field.to_sym].nil?
-      end
-
-      raise ArgumentError unless options[:tracking].nil? || options[:tracking].is_a?(Fishbowl::Object::Tracking)
-
-      request = Nokogiri::XML::Builder.new do |xml|
+    def self.adjust_inventory_request(options)
+      Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.AdjustInventoryRq {
             xml.TagNum options[:tag_number]
@@ -80,8 +93,7 @@ module Fishbowl
           }
         }
       end
-
-      Fishbowl::Objects::BaseObject.new.send_request(request, 'AdjustInventoryRs')
     end
+
   end
 end
