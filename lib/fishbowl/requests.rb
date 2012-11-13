@@ -1,3 +1,7 @@
+module Fishbowl; module Requests; end; end
+
+require 'fishbowl/requests/get_carrier_list'
+
 module Fishbowl
   module Requests
     def self.add_inventory(options = {})
