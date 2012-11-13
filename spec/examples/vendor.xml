@@ -1,0 +1,19 @@
+<Vendor>
+  <VendorID>8</VendorID>
+  <AccountID>206</AccountID>
+  <Status>Normal</Status>
+  <DefPaymentTerms>COD</DefPaymentTerms>
+  <DefShipTerms>Prepaid &amp; Billed</DefShipTerms>
+  <Name>A&amp;B Distribution</Name>
+  <Number>5</Number>
+  <DateCreated>2006-02-07T14:31:34</DateCreated>
+  <DateModified>2010-03-09T13:41:06</DateModified>
+  <LastChangedUser>admin</LastChangedUser>
+  <CreditLimit>0</CreditLimit>
+  <Note/>
+  <ActiveFlag>true</ActiveFlag>
+  <AccountingID>67265</AccountingID>
+  <AccountingHash>12345
+  <AccountingHash>
+  <Addresses/>
+</Vendor>

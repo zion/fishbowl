@@ -1,0 +1,10 @@
+<TaxRate>
+  <ID>2</ID>
+  <Name>Tax</Name>
+  <Description></Description>
+  <Rate>.05</Rate>
+  <TypeID>10</TypeID>
+  <VendorID>6</VendorID>
+  <DefaultFlag>true</DefaultFlag>
+  <ActiveFlag>true</ActiveFlag>
+</TaxRate>

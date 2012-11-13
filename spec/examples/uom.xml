@@ -1,0 +1,26 @@
+<UOM>
+  <UOMID>1</UOMID>
+  <Name>Each</Name>
+  <Code>ea</Code>
+  <Integral>true</Integral>
+  <Active>true</Active>
+  <Type>Count</Type>
+  <UOMConversions>
+    <UOMConversion>
+      <MainUOMID>1</MainUOMID>
+      <ToUOMID>17</ToUOMID>
+      <ToUOMCode>pr</ToUOMCode>
+      <ConversionMultiply>1.0</ConversionMultiply>
+      <ConversionFactor>2.0</ConversionFactor>
+      <ToUOMIsIntegral>false</ToUOMIsIntegral>
+    </UOMConversion>
+    <UOMConversion>
+      <MainUOMID>1</MainUOMID>
+      <ToUOMID>18</ToUOMID>
+      <ToUOMCode>pk</ToUOMCode>
+      <ConversionMultiply>1.0</ConversionMultiply>
+      <ConversionFactor>20.0</ConversionFactor>
+      <ToUOMIsIntegral>false</ToUOMIsIntegral>
+    </UOMConversion>
+  </UOMConversions>
+</UOM>

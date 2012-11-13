@@ -1,0 +1,28 @@
+<Tag>
+  <TagID>376</TagID>
+  <Num>363</Num>
+  <PartNum/>
+  <Location>
+    <LocationID>2</LocationID>
+    <TypeID>20</TypeID>
+    <Name>Shipping</Name>
+    <Description>The place where items are packaged and shipped.</Description>
+    <CountedAsAvailable>true</CountedAsAvailable>
+    <Default>true</Default>
+    <Active>true</Active>
+    <Pickable>true</Pickable>
+    <Receivable>true</Receivable>
+    <LocationGroupID>1</LocationGroupID>
+    <LocationGroupName>SLC</LocationGroupName>
+    <SortOrder>10006</SortOrder>
+    <TagID>376</TagID>
+    <TagNumber>363</TagNumber>
+  </Location>
+  <Quantity>0</Quantity>
+  <QuantityCommitted>0</QuantityCommitted>
+  <WONum>N/A</WONum>
+  <DateCreated>2006-08-31T08:16:10</DateCreated>
+  <Tracking/>
+  <TypeID>10</TypeID>
+  <AccountID>1</AccountID>
+</Tag>

@@ -1,0 +1,14 @@
+<Tracking>
+  <TrackingItem>
+    <PartTracking>
+      <PartTrackingID>3</PartTrackingID>
+      <Name>Expiration Date</Name>
+      <Abbr>ExpDate</Abbr>
+      <Description/>
+      <SortOrder>3</SortOrder>
+      <TrackingTypeID>30</TrackingTypeID>
+      <Active>true</Active>
+    </PartTracking>
+    <TrackingValue>2006-12-08T00:00:00</TrackingValue>
+  </TrackingItem>
+</Tracking>
