@@ -1,7 +1,7 @@
 module Fishbowl
   module Requests
     def self.add_inventory(options = {})
-      options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      options = options.symbolize_keys
 
       %w{part_number quantity uom_id cost location_tag_number tag_number}.each do |required_field|
         raise ArgumentError if options[required_field.to_sym].nil?
@@ -28,7 +28,7 @@ module Fishbowl
     end
 
     def self.add_sales_order_item(options = {})
-      options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      options = options.symbolize_keys
 
       %w{order_number id product_number sales_order_id description taxable
          quantity product_price total_price uom_code item_type status
@@ -63,7 +63,7 @@ module Fishbowl
     end
 
     def self.adjust_inventory(options = {})
-      options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      options = options.symbolize_keys
 
       %w{tag_number quantity}.each do |required_field|
         raise ArgumentError if options[required_field.to_sym].nil?
