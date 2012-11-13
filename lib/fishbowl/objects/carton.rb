@@ -32,7 +32,7 @@ module Fishbowl::Objects
     attr_reader :ship_item_id, :product_number, :product_description
     attr_reader :qty_shipped, :cost, :sku, :upc, :order_item_id
     attr_reader :order_line_item, :carton_name, :carton_id, :tag_num, :weight
-    attr_reader :display_weight, :tracking
+    attr_reader :display_weight, :tracking, :uom, :weight_uom, :display_weight_uom
 
     def self.attributes
       %w{ShipItemID ProductNumber ProductDescription QtyShipped Cost SKU UPC
@@ -44,9 +44,9 @@ module Fishbowl::Objects
       @xml = shipping_item_xml
       parse_attributes
 
-      @uom
-      @weight_uom
-      @display_weight_uom
+      @uom = Fishbowl::Objects::UOM.new(@xml.xpath("UOM"))
+      @weight_uom = Fishbowl::Objects::UOM.new(@xml.xpath("WeightUOM/UOM"))
+      @display_weight_uom = Fishbowl::Objects::UOM.new(@xml.xpath("DisplayWeightUOM/UOM"))
 
       self
     end
