@@ -1,11 +1,11 @@
 module Fishbowl::Objects
   class Address < BaseObject
-    attr_reader :db_id, :temp_account, :name, :attention, :street, :city, :zip
+    attr_reader :db_id, :temp_account, :name, :attn, :street, :city, :zip
     attr_reader :location_group_id, :default, :residential, :type, :state
     attr_reader :country, :address_information_list
 
     def self.attributes
-      %w{ID Name Attention Street City Zip LocationGroupID Default Residential Type}
+      %w{ID Name Attn Street City Zip LocationGroupID Default Residential Type}
     end
 
     def initialize(address_xml)
