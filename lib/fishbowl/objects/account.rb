@@ -11,17 +11,5 @@ module Fishbowl::Objects
       parse_attributes
       self
     end
-
-    def self.get_list
-      _, _, response = BaseObject.new.send_request("GetAccountListRq", "GetAccountListRs")
-
-      results = []
-
-      response.xpath("//Account").each do |account_xml|
-        results << Account.new(account_xml)
-      end
-
-      results
-    end
   end
 end
