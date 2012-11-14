@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = Fishbowl::VERSION
   gem.authors       = ["James Thompson"]
   gem.email         = ["james@plainprograms.com"]
-  gem.description   = %q{Provides an interface to the Fishbowl Inventory API.}
+  gem.description   = %q{Provides an interface to the Fishbowl Inventory API}
   gem.summary       = %q{Fishbowl Inventory API}
   gem.homepage      = "https://github.com/readyproject/fishbowl"
 
