@@ -69,45 +69,4 @@ describe Fishbowl::Objects::Account do
       Fishbowl::Objects::Account.get_list.should be_an(Array)
     end
   end
-
-  describe ".get_balance" do
-    let(:proper_request) do
-      Nokogiri::XML::Builder.new do |xml|
-        xml.FbiXml {
-          xml.Ticket
-          xml.FbiMsgsRq {
-            xml.GetAccountBalanceRq {
-              xml.Account "General Account"
-            }
-          }
-        }
-      end
-    end
-
-    before :each do
-      canned_response = Nokogiri::XML::Builder.new do |xml|
-        xml.response {
-          xml.GetAccountBalanceRs(statusCode: '1000', statusMessage: "Success!") {
-            xml.Account {
-              xml.Name          "Demo Account"
-              xml.AccountingID  "DEMO"
-              xml.AccountType   9
-              xml.Balance       "1200.00"
-            }
-          }
-        }
-      end
-
-      mock_the_response(canned_response)
-    end
-
-    it "should properly format the request" do
-      Fishbowl::Objects::Account.get_balance("General Account")
-      connection.last_write.should be_equivalent_to(proper_request.to_xml)
-    end
-
-    it "should return the balance for the requested Account" do
-      Fishbowl::Objects::Account.get_balance("General Account").should be_a(String)
-    end
-  end
 end
