@@ -13,7 +13,7 @@ describe Fishbowl::Requests do
 
     it "sends proper request" do
       mock_the_response(expected_response)
-      Fishbowl::Requests.get_customer
+      Fishbowl::Requests.get_customer("Nancy Bluer")
       connection.last_write.should be_equivalent_to(expected_request)
     end
 
