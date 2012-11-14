@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Fishbowl::Requests do
-  describe "#get_customer_list" do
+  describe "#get_customer_name_list" do
     before :each do
       mock_tcp_connection
       mock_login_response
