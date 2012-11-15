@@ -13,7 +13,7 @@ describe Fishbowl::Requests do
 
     it "sends proper request" do
       mock_the_response(expected_response)
-      Fishbowl::Requests.void_sales_order("50069")
+      Fishbowl::Requests.void_sales_order(50069)
       connection.last_write.should be_equivalent_to(expected_request)
     end
 
@@ -35,9 +35,7 @@ describe Fishbowl::Requests do
     def expected_response
       Nokogiri::XML::Builder.new do |xml|
         xml.response {
-          xml.VoidSORs(statusCode: '1000', statusMessage: "Success!") {
-            #TODO figure out what goes here!
-          }
+          xml.VoidSORs(statusCode: '1000', statusMessage: "Success!")
         }
       end
     end
