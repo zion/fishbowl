@@ -17,14 +17,14 @@ describe Fishbowl::Requests do
       connection.last_write.should be_equivalent_to(expected_request)
     end
 
+    it "returns an array of UOMs"
+
     def expected_request
       request = Nokogiri::XML::Builder.new do |xml|
         xml.FbiXml {
           xml.Ticket
           xml.FbiMsgsRq {
-            xml.UOMRq {
-              #TODO figure out what goes here!
-            }
+            xml.UOMRq
           }
         }
       end
