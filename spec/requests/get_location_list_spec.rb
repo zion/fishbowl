@@ -17,6 +17,8 @@ describe Fishbowl::Requests do
       connection.last_write.should be_equivalent_to(expected_request)
     end
 
+    it "returns an array of Locations"
+
     def expected_request
       request = Nokogiri::XML::Builder.new do |xml|
         xml.FbiXml {
