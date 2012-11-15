@@ -18,8 +18,6 @@ describe Fishbowl::Requests do
     end
 
     def expected_request(options = {})
-      options = valid_options.merge(options)
-
       request = Nokogiri::XML::Builder.new do |xml|
         xml.FbiXml {
           xml.Ticket
