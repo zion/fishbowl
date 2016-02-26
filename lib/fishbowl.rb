@@ -96,8 +96,7 @@ module Fishbowl # :nodoc:
     end
 
     def self.encoded_password
-      return @password
-      # Base64.encode64(Digest::MD5.new.update(@password).hexdigest)
+      Digest::MD5.base64digest(@password)
     end
 
     def self.write(request)
