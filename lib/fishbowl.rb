@@ -44,7 +44,7 @@ module Fishbowl # :nodoc:
 
       @username, @password = options[:username], options[:password]
 
-      code, message, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
+      code, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
       Fishbowl::Errors.confirm_success_or_raise(code)
 
       self.instance
@@ -113,11 +113,9 @@ module Fishbowl # :nodoc:
 
       puts response
 
-      binding.pry
       status_code = response.xpath("/FbiXml/#{expectation}").attr("statusCode").value
-      status_message = ""
 
-      [status_code, status_message, response]
+      [status_code, response]
     end
 
   end
