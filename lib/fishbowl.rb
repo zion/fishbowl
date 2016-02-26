@@ -76,7 +76,7 @@ module Fishbowl # :nodoc:
       Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.LoginRq {
-            xml.IAID          "fishbowl-ruby"
+            xml.IAID          "zYjEsXTmmb2QD4iGMTeF-smartmix-fishbowl-integration"
             xml.IAName        "Fishbowl Ruby Gem"
             xml.IADescription "Fishbowl Ruby Gem"
             xml.UserName      @username
