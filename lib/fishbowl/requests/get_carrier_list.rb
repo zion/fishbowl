@@ -7,6 +7,7 @@ module Fishbowl::Requests
       results << Fishbowl::Objects::Carrier.new(carrier_xml)
     end
 
+    binding.pry
     results
   end
 end

@@ -5,6 +5,8 @@ gemspec
 gem 'rake'
 gem 'rspec'
 
+gem 'pry'
+
 gem 'equivalent-xml'
 
 group :localtest do

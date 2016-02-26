@@ -11,6 +11,8 @@ require 'fishbowl/errors'
 require 'fishbowl/requests'
 require 'fishbowl/objects'
 
+require 'pry'
+
 module Fishbowl # :nodoc:
   class Connection
     include Singleton
@@ -33,9 +35,10 @@ module Fishbowl # :nodoc:
 
       @username, @password = options[:username], options[:password]
 
-      code, message, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request, 'LoginRs')
-
+      code, message, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
       Fishbowl::Errors.confirm_success_or_raise(code, message)
+
+
 
       self.instance
     end
@@ -57,6 +60,7 @@ module Fishbowl # :nodoc:
     end
 
     def self.send(request, expected_response = 'FbiMsgRs')
+      puts request
       write(request)
       get_response(expected_response)
     end
@@ -89,18 +93,18 @@ module Fishbowl # :nodoc:
     def self.write(request)
       body = request.to_xml
       size = [body.size].pack("L>")
-
       @connection.write(size)
       @connection.write(body)
     end
 
     def self.get_response(expectation)
-      length = @connection.recv(3).unpack('L>').join('').to_i
+      length = @connection.recv(4).unpack('L>').join('').to_i
       response = Nokogiri::XML.parse(@connection.recv(length))
 
-      status_code = response.xpath("//#{expectation}/@statusCode").first.value
-      status_message = response.xpath("//#{expectation}/@statusMessage").first.value
-
+      status_code = "1000"
+      status_message = ""
+      puts 'response: '
+      puts response
       [status_code, status_message, response]
     end
 

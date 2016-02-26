@@ -1,10 +1,15 @@
+require 'pry'
+
 module Fishbowl::Objects
   class BaseObject
-    attr_accessor :ticket
+    # attr_accessor :ticket
+
+    @@ticket = nil
 
     def send_request(request, expected_response = 'FbiMsgRs')
       code, message, response = Fishbowl::Connection.send(build_request(request), expected_response)
       Fishbowl::Errors.confirm_success_or_raise(code, message)
+      @@ticket = response.css("FbiXml Ticket Key").text
       [code, message, response]
     end
 
@@ -35,12 +40,14 @@ module Fishbowl::Objects
   private
 
     def build_request(request)
-      Nokogiri::XML::Builder.new do |xml|
+      new_req = Nokogiri::XML::Builder.new do |xml|
         xml.FbiXml {
-          if @ticket.nil?
+          if @@ticket.nil?
             xml.Ticket
           else
-            xml.Ticket @ticket
+            xml.Ticket {
+              xml.Key @@ticket
+            }
           end
 
           xml.FbiMsgsRq {
@@ -52,6 +59,7 @@ module Fishbowl::Objects
           }
         }
       end
+      Nokogiri::XML(new_req.to_xml).root
     end
 
   end
