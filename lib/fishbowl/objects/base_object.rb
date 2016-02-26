@@ -2,15 +2,26 @@ require 'pry'
 
 module Fishbowl::Objects
   class BaseObject
-    # attr_accessor :ticket
-
     @@ticket = nil
 
     def send_request(request, expected_response = 'FbiMsgsRs')
-      code, response = Fishbowl::Connection.send(build_request(request), expected_response)
-      Fishbowl::Errors.confirm_success_or_raise(code)
-      # @@ticket = response.css("FbiXml Ticket Key").text
-      [code, response]
+      result = nil
+      5.times do
+        puts 'trying request'
+        begin
+          code, response = Fishbowl::Connection.send(build_request(request), expected_response)
+          raise "No response" if response.nil?
+          Fishbowl::Errors.confirm_success_or_raise(code)
+          @@ticket = response.css("FbiXml Ticket Key").text
+          puts 'succeeded'
+          result = [code, nil, response]
+          break
+        rescue NoMethodError => nme
+          puts 'failed'
+          sleep 1
+        end
+      end
+      return result
     end
 
   protected

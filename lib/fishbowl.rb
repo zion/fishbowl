@@ -111,8 +111,10 @@ module Fishbowl # :nodoc:
       response = Nokogiri::XML.parse(@connection.recv(length))
 
       puts response
+      # puts expectation
 
       status_code = response.xpath("/FbiXml/#{expectation}").attr("statusCode").value
+      # binding.pry
 
       [status_code, response]
     end
