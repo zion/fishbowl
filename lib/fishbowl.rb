@@ -16,33 +16,42 @@ require 'helpers/configuration'
 require 'pry'
 
 module Fishbowl # :nodoc:
-  extend Configuration
-  # define_setting :app_id
-  # define_setting :app_name
-  # define_setting :app_description
-  # define_setting :username
-  # define_setting :password
+
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :username, :password, :host, :port, :app_id, :app_name, :app_description
+
+    def initialize
+    end
+  end
 
   class Connection
     include Singleton
 
-    def self.connect(options = {})
-      raise Fishbowl::Errors::MissingHost if options[:host].nil?
+    def self.connect()
+      raise Fishbowl::Errors::MissingHost if Fishbowl.configuration.host.nil?
 
-      @host = options[:host]
-      @port = options[:port].nil? ? 28192 : options[:port]
+      @host = Fishbowl.configuration.host
+      @port = Fishbowl.configuration.port.nil? ? 28192 : Fishbowl.configuration.port
 
       @connection = TCPSocket.new @host, @port
 
       self.instance
     end
 
-    def self.login(options = {})
+    def self.login()
       raise Fishbowl::Errors::ConnectionNotEstablished if @connection.nil?
-      raise Fishbowl::Errors::MissingUsername if options[:username].nil?
-      raise Fishbowl::Errors::MissingPassword if options[:password].nil?
 
-      @username, @password = options[:username], options[:password]
+      @username = Fishbowl.configuration.username
+      @password = Fishbowl.configuration.password
 
       code, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
       Fishbowl::Errors.confirm_success_or_raise(code)
@@ -85,10 +94,10 @@ module Fishbowl # :nodoc:
       Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.LoginRq {
-            xml.IAID          "10203"
-            xml.IAName        "Fishbowl Ruby Gem"
-            xml.IADescription "Fishbowl Ruby Gem"
-            xml.UserName      @username
+            xml.IAID          Fishbowl.configuration.app_id
+            xml.IAName        Fishbowl.configuration.app_name
+            xml.IADescription Fishbowl.configuration.app_description
+            xml.UserName      Fishbowl.configuration.username
             xml.UserPassword  encoded_password
           }
         }

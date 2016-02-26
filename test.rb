@@ -1,13 +1,16 @@
 require './lib/fishbowl'
 require 'pry'
 
-puts 'CONNECT ---'
-Fishbowl::Connection.connect(:host => "199.119.85.202")
-puts 'LOGIN ---'
-Fishbowl::Connection.login(:username => "Simeon", :password => "covercrops2")
-
-puts 'carrier list...'
-carriers = Fishbowl::Requests.get_carrier_list
-carriers.each do |carrier|
-  puts carrier
+Fishbowl.configure do |config|
+  config.username = "Simeon"
+  config.password = "covercrops2"
+  config.host = "199.119.85.202"
+  config.app_id = "10203"
+  config.app_name = "Fishbowl Ruby Gem"
+  config.app_description = "Fishbowl Ruby Gem"
 end
+
+Fishbowl::Connection.connect
+Fishbowl::Connection.login
+carriers = Fishbowl::Requests.get_carrier_list
+puts carriers
