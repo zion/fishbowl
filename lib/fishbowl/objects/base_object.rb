@@ -6,10 +6,10 @@ module Fishbowl::Objects
 
     @@ticket = nil
 
-    def send_request(request, expected_response = 'FbiMsgRs')
+    def send_request(request, expected_response = 'FbiMsgsRs')
       code, message, response = Fishbowl::Connection.send(build_request(request), expected_response)
-      Fishbowl::Errors.confirm_success_or_raise(code, message)
-      @@ticket = response.css("FbiXml Ticket Key").text
+      Fishbowl::Errors.confirm_success_or_raise(code)
+      # @@ticket = response.css("FbiXml Ticket Key").text
       [code, message, response]
     end
 

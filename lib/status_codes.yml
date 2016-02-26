@@ -1,0 +1,183 @@
+---
+# Fishbowl Inventory Api Status Codes
+codes:
+  1000:
+   code: 1000
+   message: Success!
+  1001:
+   code: 1001
+   message: Unknown Message Received
+  1002:
+   code: 1002
+   message: Connection to Fishbowl Server was lost
+  1003:
+   code: 1003
+   message: Some Requests had errors -- now isn't that helpful...
+  1004:
+   code: 1004
+   message: There was an error with the database.
+  1009:
+   code: 1009
+   message: Fishbowl Server has been shut down.
+  1010:
+   code: 1010
+   message: You have been logged off the server by an administrator.
+  1012:
+   code: 1012
+   message: Unknown request function.
+  1100:
+   code: 1100
+   message: Unknown login error occurred.
+  1110:
+   code: 1110
+   message: A new Integrated Application has been added to Fishbowl Inventory. Please contact your Fishbowl Inventory Administrator to approve this Integrated Application."
+  1111:
+   code: 1111
+   message: This Integrated Application registration key does not match."
+  1112:
+   code: 1112
+   message: This Integrated Application has not been approved by the Fishbowl Inventory Administrator."
+  1120:
+   code: 1120
+   message: Invalid Username or Password."
+  1130:
+   code: 1130
+   message: Invalid Ticket passed to Fishbowl Inventory Server."
+  1131:
+   code: 1131
+   message: Invalid Key value."
+  1140:
+   code: 1140
+   message: Initialization token is not correct type."
+  1150:
+   code: 1150
+   message: Request was invalid"
+  1160:
+   code: 1160
+   message: Response was invalid."
+  1162:
+   code: 1162
+   message: The login limit has been reached for the server's key."
+  1200:
+   code: 1200
+   message: Custom Field is invalid."
+  1500:
+   code: 1500
+   message: The import was not properly formed."
+  1501:
+   code: 1501
+   message: That import type is not supported"
+  1502:
+   code: 1502
+   message: File not found."
+  1503:
+   code: 1503
+   message: That export type is not supported."
+  1504:
+   code: 1504
+   message: File could not be written to."
+  1505:
+   code: 1505
+   message: The import data was of the wrong type."
+  2000:
+   code: 2000
+   message: Was not able to find the Part {0}."
+  2001:
+   code: 2001
+   message: The part was invalid."
+  2100:
+   code: 2100
+   message: Was not able to find the Product {0}."
+  2101:
+   code: 2101
+   message: The product was invalid."
+  2200:
+   code: 2200
+   message: The yield failed."
+  2201:
+   code: 2201
+   message: Commit failed."
+  2202:
+   code: 2202
+   message: Add initial inventory failed."
+  2203:
+   code: 2203
+   message: Can not adjust committed inventory."
+  2300:
+   code: 2300
+   message: Was not able to find the Tag number {0}."
+  2301:
+   code: 2301
+   message: The tag is invalid."
+  2302:
+   code: 2302
+   message: The tag move failed."
+  2303:
+   code: 2303
+   message: Was not able to save Tag number {0}."
+  2304:
+   code: 2304
+   message: Not enough available inventory in Tagnumber {0}."
+  2305:
+   code: 2305
+   message: Tag number {0} is a location."
+  2400:
+   code: 2400
+   message: Invalid UOM."
+  2401:
+   code: 2401
+   message: UOM {0} not found."
+  2402:
+   code: 2402
+   message: Integer UOM {0} cannot have non-integer quantity."
+  2500:
+   code: 2500
+   message: The Tracking is not valid."
+  2510:
+   code: 2510
+   message: Serial number is missing."
+  2511:
+   code: 2511
+   message: Serial number is null."
+  2512:
+   code: 2512
+   message: Serial number is duplicate."
+  2513:
+   code: 2513
+   message: Serial number is not valid."
+  2600:
+   code: 2600
+   message: Location not found."
+  2601:
+   code: 2601
+   message: Invalid location."
+  2602:
+   code: 2602
+   message: Location Group {0} not found."
+  3000:
+   code: 3000
+   message: Customer {0} not found."
+  3001:
+   code: 3001
+   message: Customer is invalid."
+  3100:
+   code: 3100
+   message: Vendor {0} not found."
+  3101:
+   code: 3101
+   message: Vendor is invalid."
+  4000:
+   code: 4000
+   message: There was an error load PO {0}."
+  4001:
+   code: 4001
+   message: Unknow status {0}."
+  4002:
+   code: 4002
+   message: Unknown carrier {0}."
+  4003:
+   code: 4003
+   message: Unknown QuickBooks class {0}."
+  4004:
+   code: 4004
+   message: PO does not have a PO number. Please turn on the auto-assign PO number option in the purchase order module options."

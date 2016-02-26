@@ -11,9 +11,18 @@ require 'fishbowl/errors'
 require 'fishbowl/requests'
 require 'fishbowl/objects'
 
+require 'helpers/configuration'
+
 require 'pry'
 
 module Fishbowl # :nodoc:
+  extend Configuration
+  # define_setting :app_id
+  # define_setting :app_name
+  # define_setting :app_description
+  # define_setting :username
+  # define_setting :password
+
   class Connection
     include Singleton
 
@@ -36,9 +45,7 @@ module Fishbowl # :nodoc:
       @username, @password = options[:username], options[:password]
 
       code, message, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
-      Fishbowl::Errors.confirm_success_or_raise(code, message)
-
-
+      Fishbowl::Errors.confirm_success_or_raise(code)
 
       self.instance
     end
@@ -59,8 +66,10 @@ module Fishbowl # :nodoc:
       @password
     end
 
-    def self.send(request, expected_response = 'FbiMsgRs')
+    def self.send(request, expected_response = 'FbiMsgsRs')
+      puts 'opening connection...'
       puts request
+      puts 'waiting for response...'
       write(request)
       get_response(expected_response)
     end
@@ -76,7 +85,7 @@ module Fishbowl # :nodoc:
       Nokogiri::XML::Builder.new do |xml|
         xml.request {
           xml.LoginRq {
-            xml.IAID          "zYjEsXTmmb2QD4iGMTeF-smartmix-fishbowl-integration"
+            xml.IAID          "10203"
             xml.IAName        "Fishbowl Ruby Gem"
             xml.IADescription "Fishbowl Ruby Gem"
             xml.UserName      @username
@@ -87,7 +96,8 @@ module Fishbowl # :nodoc:
     end
 
     def self.encoded_password
-      Base64.encode64(@password)
+      return @password
+      # Base64.encode64(Digest::MD5.new.update(@password).hexdigest)
     end
 
     def self.write(request)
@@ -101,10 +111,12 @@ module Fishbowl # :nodoc:
       length = @connection.recv(4).unpack('L>').join('').to_i
       response = Nokogiri::XML.parse(@connection.recv(length))
 
-      status_code = "1000"
-      status_message = ""
-      puts 'response: '
       puts response
+
+      binding.pry
+      status_code = response.xpath("/FbiXml/#{expectation}").attr("statusCode").value
+      status_message = ""
+
       [status_code, status_message, response]
     end
 
