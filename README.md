@@ -2,10 +2,6 @@
 
 Provides an interface to the Fishbowl Inventory API.
 
-[![Build Status](https://travis-ci.org/readyproject/fishbowl.png)](https://travis-ci.org/readyproject/fishbowl)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/readyproject/fishbowl)
-[![Dependency Status](https://gemnasium.com/readyproject/fishbowl.png)](https://gemnasium.com/readyproject/fishbowl)
-
 ## Requirements
 
 A Ruby 1.9 compatible interpreter
