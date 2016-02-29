@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ## Usage
 
-Add this to your initializers
+Add this to your env.rb file or as an initializer
 
 ```ruby
 Fishbowl.configure do |config|
@@ -38,6 +38,19 @@ Fishbowl.configure do |config|
   config.app_description = "Fishbowl Ruby Gem"
   config.debug = true
 end
+```
+
+Now you are setup to make API calls in your application code
+
+```ruby
+Fishbowl::Connection.connect
+Fishbowl::Connection.login
+carriers = Fishbowl::Requests.get_carrier_list
+```
+
+The 'connect' method establishes the connection socket to the server, the 'login' method authenticates the connection to the server using a username and password.
+
+Once the login method is successful (The Fishbowl API responds with statusCode=1000 for successful requests, see a [complete list](../blob/master/lib/status_codes.yml) of status codes)
 
 ## Contributing
 
