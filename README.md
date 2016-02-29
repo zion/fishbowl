@@ -26,7 +26,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add this to your initializers
+
+```ruby
+Fishbowl.configure do |config|
+  config.username = "joe"
+  config.password = "joes_password"
+  config.host = "999.888.77.666"
+  config.app_id = "1234"
+  config.app_name = "Fishbowl Ruby Gem"
+  config.app_description = "Fishbowl Ruby Gem"
+  config.debug = true
+end
 
 ## Contributing
 
