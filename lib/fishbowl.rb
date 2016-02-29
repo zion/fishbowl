@@ -27,9 +27,10 @@ module Fishbowl # :nodoc:
   end
 
   class Configuration
-    attr_accessor :username, :password, :host, :port, :app_id, :app_name, :app_description
+    attr_accessor :username, :password, :host, :port, :app_id, :app_name, :app_description, :debug
 
     def initialize
+      @debug = false
     end
   end
 
@@ -76,9 +77,9 @@ module Fishbowl # :nodoc:
     end
 
     def self.send(request, expected_response = 'FbiMsgsRs')
-      puts 'opening connection...'
-      puts request
-      puts 'waiting for response...'
+      puts 'opening connection...' if Fishbowl.configuration.debug.eql? true
+      puts request if Fishbowl.configuration.debug.eql? true
+      puts 'waiting for response...' if Fishbowl.configuration.debug.eql? true
       write(request)
       get_response(expected_response)
     end
@@ -119,11 +120,10 @@ module Fishbowl # :nodoc:
       length = @connection.recv(4).unpack('L>').join('').to_i
       response = Nokogiri::XML.parse(@connection.recv(length))
 
-      puts response
-      # puts expectation
+      puts "Looking for '#{expectation}' node in: " if Fishbowl.configuration.debug.eql? true
+      puts response if Fishbowl.configuration.debug.eql? true
 
       status_code = response.xpath("/FbiXml/#{expectation}").attr("statusCode").value
-      # binding.pry
 
       [status_code, response]
     end

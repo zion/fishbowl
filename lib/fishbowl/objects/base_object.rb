@@ -6,18 +6,18 @@ module Fishbowl::Objects
 
     def send_request(request, expected_response = 'FbiMsgsRs')
       result = nil
-      5.times do
-        puts 'trying request'
+      5.times do |i|
+        puts "REQUEST ATTEMPT: #{i}" if Fishbowl.configuration.debug.eql? true
         begin
           code, response = Fishbowl::Connection.send(build_request(request), expected_response)
           raise "No response" if response.nil?
           Fishbowl::Errors.confirm_success_or_raise(code)
           @@ticket = response.css("FbiXml Ticket Key").text
-          puts 'succeeded'
+          puts 'RESPONSE SUCCEEDED' if Fishbowl.configuration.debug.eql? true
           result = [code, nil, response]
           break
         rescue NoMethodError => nme
-          puts 'failed'
+          puts 'FAILED TO GET RESPONSE' if Fishbowl.configuration.debug.eql? true
           sleep 1
         end
       end
