@@ -15,6 +15,8 @@ module Fishbowl
 
     def self.login()
       raise Fishbowl::Errors::ConnectionNotEstablished if @connection.nil?
+      raise Fishbowl::Errors::MissingUsername if Fishbowl.configuration.host.nil?
+      raise Fishbowl::Errors::MissingPassword if Fishbowl.configuration.host.nil?
 
       @username = Fishbowl.configuration.username
       @password = Fishbowl.configuration.password
