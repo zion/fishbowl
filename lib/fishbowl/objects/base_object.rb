@@ -1,5 +1,3 @@
-require 'pry'
-
 module Fishbowl::Objects
   class BaseObject
     @@ticket = nil

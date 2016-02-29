@@ -13,8 +13,6 @@ require 'fishbowl/objects'
 
 require 'helpers/configuration'
 
-require 'pry'
-
 module Fishbowl # :nodoc:
 
   class << self
