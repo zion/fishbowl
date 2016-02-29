@@ -50,7 +50,7 @@ carriers = Fishbowl::Requests.get_carrier_list
 
 The 'connect' method establishes the connection socket to the server, the 'login' method authenticates the connection to the server using a username and password.
 
-Once the login method is successful (The Fishbowl API responds with statusCode=1000 for successful requests, see a [complete list](../blob/master/lib/status_codes.yml) of status codes)
+Once the login method is successful (The Fishbowl API responds with statusCode=1000 for successful requests, see a [complete list](../master/lib/status_codes.yml) of status codes)
 
 ## Contributing
 
