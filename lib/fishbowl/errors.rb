@@ -5,11 +5,12 @@ module Fishbowl::Errors
   class MissingHost < ArgumentError; end;
   class MissingUsername < ArgumentError; end;
   class MissingPassword < ArgumentError; end;
+  class EmptyResponse < RuntimeError; end;
 
   class StatusError < RuntimeError; end;
 
   def self.confirm_success_or_raise(code)
-    code.to_i == 1000 ? true : raise(StatusError, get_status(code.to_i))
+    code.eql? "1000" ? true : raise(StatusError, get_status(code))
   end
 
   def self.get_status(code)

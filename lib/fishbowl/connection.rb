@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module Fishbowl
   class Connection
     include Singleton
@@ -23,6 +25,8 @@ module Fishbowl
 
       code, _ = Fishbowl::Objects::BaseObject.new.send_request(login_request)
       Fishbowl::Errors.confirm_success_or_raise(code)
+
+      raise "Login failed" unless code.eql? "1000"
 
       self.instance
     end
@@ -84,14 +88,11 @@ module Fishbowl
     end
 
     def self.get_response(expectation)
-      length = @connection.recv(4).unpack('L>').join('').to_i
-      response = Nokogiri::XML.parse(@connection.recv(length))
-
-      puts "Looking for '#{expectation}' node in: " if Fishbowl.configuration.debug.eql? true
+      puts "reading response" if Fishbowl.configuration.debug.eql? true
+      length = @connection.read(4).unpack('L>').join('').to_i
+      response = Nokogiri::XML.parse(@connection.read(length))
       puts response if Fishbowl.configuration.debug.eql? true
-
-      status_code = response.xpath("/FbiXml/#{expectation}").attr("statusCode").value
-
+      status_code = response.xpath("/FbiXml/FbiMsgsRs").attr("statusCode").value
       [status_code, response]
     end
 
