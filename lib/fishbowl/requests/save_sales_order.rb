@@ -42,9 +42,9 @@ private
             xml.CustomFields {
               sales_order[:custom_fields].each do |field|
                 xml.CustomField {
-                  xml.ID field.id
-                  xml.Name field.name
-                  xml.Info field.info
+                  xml.ID field[:id]
+                  xml.Name field[:name]
+                  xml.Info field[:info]
                 }
               end
             }
