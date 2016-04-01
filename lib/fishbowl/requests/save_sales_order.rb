@@ -32,13 +32,13 @@ private
             #   xml.State sales_order[:bill_to][:state]
             #   xml.Zip sales_order[:bill_to][:zip]
             # }
-            xml.Ship {
-              xml.Name sales_order[:ship_to][:name]
-              xml.AddressField sales_order[:ship_to][:address]
-              xml.City sales_order[:ship_to][:address]
-              xml.State sales_order[:ship_to][:state]
-              xml.Zip sales_order[:ship_to][:zip]
-            }
+            # xml.Ship {
+            #   xml.Name sales_order[:ship_to][:name]
+            #   xml.AddressField sales_order[:ship_to][:address]
+            #   xml.City sales_order[:ship_to][:address]
+            #   xml.State sales_order[:ship_to][:state]
+            #   xml.Zip sales_order[:ship_to][:zip]
+            # }
             xml.CustomFields {
               sales_order[:custom_fields].each do |field|
                 xml.CustomField {
