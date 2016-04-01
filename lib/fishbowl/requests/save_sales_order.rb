@@ -39,15 +39,15 @@ private
             #   xml.State sales_order[:ship_to][:state]
             #   xml.Zip sales_order[:ship_to][:zip]
             # }
-            xml.CustomFields {
-              sales_order[:custom_fields].each do |field|
-                xml.CustomField {
-                  xml.ID field[:id]
-                  xml.Name field[:name]
-                  xml.Info field[:info]
-                }
-              end
-            }
+            # xml.CustomFields {
+            #   sales_order[:custom_fields].each do |field|
+            #     xml.CustomField {
+            #       xml.ID field[:id]
+            #       xml.Name field[:name]
+            #       xml.Info field[:info]
+            #     }
+            #   end
+            # }
             xml.Items {
               sales_order[:items].each do |item|
                 xml.SalesOrderItem {
