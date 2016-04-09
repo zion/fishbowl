@@ -28,7 +28,7 @@ private
             xml.BillTo {
               xml.Name sales_order[:bill_to][:name]
               xml.AddressField sales_order[:bill_to][:address]
-              xml.City sales_order[:bill_to][:address]
+              xml.City sales_order[:bill_to][:city]
               xml.State sales_order[:bill_to][:state]
               xml.Zip sales_order[:bill_to][:zip]
               xml.Country sales_order[:bill_to][:country]
@@ -36,7 +36,7 @@ private
             xml.Ship {
               xml.Name sales_order[:ship_to][:name]
               xml.AddressField sales_order[:ship_to][:address]
-              xml.City sales_order[:ship_to][:address]
+              xml.City sales_order[:ship_to][:city]
               xml.State sales_order[:ship_to][:state]
               xml.Zip sales_order[:ship_to][:zip]
               xml.Country sales_order[:ship_to][:country]
