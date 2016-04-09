@@ -26,20 +26,20 @@ private
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
             xml.CustomerPO sales_order[:customer_po]
             xml.BillTo {
-              xml.Name sales_order[:bill_to][:name]
-              xml.AddressField sales_order[:bill_to][:address]
-              xml.City sales_order[:bill_to][:city]
-              xml.State sales_order[:bill_to][:state]
-              xml.Zip sales_order[:bill_to][:zip]
-              xml.Country sales_order[:bill_to][:country]
+              xml.Name sales_order[:bill_to][:name] unless sales_order[:bill_to][:name].nil?
+              xml.AddressField sales_order[:bill_to][:address] unless sales_order[:bill_to][:address].nil?
+              xml.City sales_order[:bill_to][:city] unless sales_order[:bill_to][:city].nil?
+              xml.Zip sales_order[:bill_to][:zip] unless sales_order[:bill_to][:zip].nil?
+              xml.Country sales_order[:bill_to][:country] unless sales_order[:bill_to][:country].nil?
+              xml.State sales_order[:bill_to][:state] unless sales_order[:bill_to][:state].nil?
             }
             xml.Ship {
-              xml.Name sales_order[:ship_to][:name]
-              xml.AddressField sales_order[:ship_to][:address]
-              xml.City sales_order[:ship_to][:city]
-              xml.State sales_order[:ship_to][:state]
-              xml.Zip sales_order[:ship_to][:zip]
-              xml.Country sales_order[:ship_to][:country]
+              xml.Name sales_order[:ship_to][:name] unless sales_order[:ship_to][:name].nil?
+              xml.AddressField sales_order[:ship_to][:address] unless sales_order[:ship_to][:address].nil?
+              xml.City sales_order[:ship_to][:city] unless sales_order[:ship_to][:city].nil?
+              xml.Zip sales_order[:ship_to][:zip] unless sales_order[:ship_to][:zip].nil?
+              xml.Country sales_order[:ship_to][:country] unless sales_order[:ship_to][:country].nil?
+              xml.State sales_order[:ship_to][:state] unless sales_order[:ship_to][:state].nil?
             }
             # xml.CustomFields {
             #   sales_order[:custom_fields].each do |field|
