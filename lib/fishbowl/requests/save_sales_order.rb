@@ -24,7 +24,8 @@ private
             xml.Status "10" if sales_order[:status].nil?
             xml.Status sales_order[:status] unless sales_order[:status].nil?
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
-            xml.CustomerPO sales_order[:customer_po]
+            xml.CustomerPO sales_order[:customer_po] unless sales_order[:customer_po].nil?
+            xml.VendorPO sales_order[:vendor_po] unless sales_order[:vendor_po].nil?
             xml.BillTo {
               xml.Name sales_order[:bill_to][:name] unless sales_order[:bill_to][:name].nil?
               xml.AddressField sales_order[:bill_to][:address] unless sales_order[:bill_to][:address].nil?
