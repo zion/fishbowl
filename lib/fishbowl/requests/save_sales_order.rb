@@ -66,7 +66,7 @@ private
                   xml.NewItemFlag "false"
                   xml.ItemType "10"
                   xml.Status "10"
-                }
+                } unless sales_order[:items].nil?
               end
             }
           }
