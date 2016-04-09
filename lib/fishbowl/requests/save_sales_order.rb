@@ -41,15 +41,17 @@ private
               xml.Country sales_order[:ship_to][:country] unless sales_order[:ship_to][:country].nil?
               xml.State sales_order[:ship_to][:state] unless sales_order[:ship_to][:state].nil?
             }
-            # xml.CustomFields {
-            #   sales_order[:custom_fields].each do |field|
-            #     xml.CustomField {
-            #       xml.ID field[:id]
-            #       xml.Name field[:name]
-            #       xml.Info field[:info]
-            #     }
-            #   end
-            # }
+            xml.CustomFields {
+              sales_order[:custom_fields].each do |field|
+                xml.CustomField {
+                  xml.ID field[:id] unless field[:id].nil?
+                  xml.Name field[:name] unless field[:name].nil?
+                  xml.Type field[:type] unless field[:type].nil?
+                  xml.Info field[:info] unless field[:info].nil?
+                  xml.Description field[:description] unless field[:description].nil?
+                }
+              end
+            } unless sales_order[:custom_fields].nil?
             xml.Items {
               sales_order[:items].each do |item|
                 xml.SalesOrderItem {
