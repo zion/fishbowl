@@ -25,20 +25,22 @@ private
             xml.Status sales_order[:status] unless sales_order[:status].nil?
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
             xml.CustomerPO sales_order[:customer_po]
-            # xml.BillTo {
-            #   xml.Name sales_order[:bill_to][:name]
-            #   xml.AddressField sales_order[:bill_to][:address]
-            #   xml.City sales_order[:bill_to][:address]
-            #   xml.State sales_order[:bill_to][:state]
-            #   xml.Zip sales_order[:bill_to][:zip]
-            # }
-            # xml.Ship {
-            #   xml.Name sales_order[:ship_to][:name]
-            #   xml.AddressField sales_order[:ship_to][:address]
-            #   xml.City sales_order[:ship_to][:address]
-            #   xml.State sales_order[:ship_to][:state]
-            #   xml.Zip sales_order[:ship_to][:zip]
-            # }
+            xml.BillTo {
+              xml.Name sales_order[:bill_to][:name]
+              xml.AddressField sales_order[:bill_to][:address]
+              xml.City sales_order[:bill_to][:address]
+              xml.State sales_order[:bill_to][:state]
+              xml.Zip sales_order[:bill_to][:zip]
+              xml.Country sales_order[:bill_to][:country]
+            }
+            xml.Ship {
+              xml.Name sales_order[:ship_to][:name]
+              xml.AddressField sales_order[:ship_to][:address]
+              xml.City sales_order[:ship_to][:address]
+              xml.State sales_order[:ship_to][:state]
+              xml.Zip sales_order[:ship_to][:zip]
+              xml.Country sales_order[:ship_to][:country]
+            }
             # xml.CustomFields {
             #   sales_order[:custom_fields].each do |field|
             #     xml.CustomField {
