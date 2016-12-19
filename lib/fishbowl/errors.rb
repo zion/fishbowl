@@ -10,7 +10,7 @@ module Fishbowl::Errors
   class StatusError < RuntimeError; end;
 
   def self.confirm_success_or_raise(code)
-    code.eql? '1000' ? true : raise(StatusError, get_status(code))
+    code.to_i.eql? 1000 ? true : raise(StatusError, get_status(code))
   end
 
   def self.get_status(code)
