@@ -10,3 +10,7 @@ gem 'nokogiri', '1.6'
 group :localtest do
   gem 'pry'
 end
+
+group :test do
+  gem 'spork'
+end
