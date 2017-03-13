@@ -10,12 +10,12 @@ Gem::Specification.new do |gem|
   gem.email         = ["james@plainprograms.com, simeonberns@gmail.com"]
   gem.description   = %q{Provides an interface to the Fishbowl Inventory API}
   gem.summary       = %q{Fishbowl Inventory API}
-  gem.homepage      = "https://github.com/flameofzion/fishbowl"
+  gem.homepage      = "https://github.com/zion/fishbowl"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'nokogiri', '~> 1.5.5'
+  gem.add_dependency 'nokogiri', '~> 1.7'
 end

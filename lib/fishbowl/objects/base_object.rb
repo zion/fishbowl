@@ -1,25 +1,12 @@
 module Fishbowl::Objects
   class BaseObject
     @@ticket = nil
-
     def send_request(request, expected_response = 'FbiMsgsRs')
-      result = nil
-      5.times do |i|
-        puts "REQUEST ATTEMPT: #{i}" if Fishbowl.configuration.debug.eql? true
-        begin
-          code, response = Fishbowl::Connection.send(build_request(request), expected_response)
-          raise "No response" if response.nil?
-          Fishbowl::Errors.confirm_success_or_raise(code)
-          @@ticket = response.css("FbiXml Ticket Key").text
-          puts 'RESPONSE SUCCEEDED' if Fishbowl.configuration.debug.eql? true
-          result = [code, nil, response]
-          break
-        rescue NoMethodError => nme
-          puts 'FAILED TO GET RESPONSE' if Fishbowl.configuration.debug.eql? true
-          sleep 1
-        end
-      end
-      return result
+      code, response = Fishbowl::Connection.send(build_request(request), expected_response)
+      Fishbowl::Errors.confirm_success_or_raise(code)
+      puts "Response successful" if Fishbowl.configuration.debug.eql? true
+      @@ticket = response.xpath("/FbiXml/Ticket/Key").text
+      [code, response]
     end
 
   protected
