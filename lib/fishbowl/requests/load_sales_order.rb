@@ -2,7 +2,7 @@ module Fishbowl::Requests
   def self.load_sales_order(order_number)
     raise Fishbowl::Errors.ArgumentError if order_number.nil?
     request = load_order_request(order_number)
-    Fishbowl::Objects::BaseObject.new.send_request(request, 'SaveSORs')
+    Fishbowl::Objects::BaseObject.new.send_request(request, 'LoadSORs')
   end
 
 private
