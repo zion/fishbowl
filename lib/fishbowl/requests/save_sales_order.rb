@@ -26,6 +26,7 @@ private
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
             xml.CustomerPO sales_order[:customer_po] unless sales_order[:customer_po].nil?
             xml.VendorPO sales_order[:vendor_po] unless sales_order[:vendor_po].nil?
+            xml.QuickBooksClassName sales_order[:quick_books_class_name] unless sales_order[:quick_books_class_name].nil?
             xml.BillTo {
               xml.Name sales_order[:bill_to][:name] unless sales_order[:bill_to][:name].nil?
               xml.AddressField sales_order[:bill_to][:address] unless sales_order[:bill_to][:address].nil?
@@ -63,6 +64,7 @@ private
                   xml.UOMCode item[:uom_code] unless item[:uom_code].nil?
                   xml.Description item[:description] unless item[:description].nil?
                   xml.LineNumber item[:line_number] unless item[:line_number].nil?
+                  xml.QuickBooksClassName item[:quick_books_class_name] unless item[:quick_books_class_name].nil?
                   xml.NewItemFlag "false"
                   xml.ItemType "10"
                   xml.Status "10"
