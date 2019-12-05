@@ -16,6 +16,7 @@ module Fishbowl::Objects
     end
 
     def parse_attributes
+      binding.pry
       self.class.attributes.each do |field|
         field = field.to_s
 

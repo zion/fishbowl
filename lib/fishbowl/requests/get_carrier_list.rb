@@ -3,7 +3,6 @@ module Fishbowl::Requests
     puts "getting carriers"
     code, response = Fishbowl::Objects::BaseObject.new.send_request('CarrierListRq', 'FbiMsgsRs/CarrierListRs')
     
-    binding.pry
     results = []
 
     response.xpath("//Carriers/Name").each do |carrier_xml|
