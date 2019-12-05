@@ -16,7 +16,6 @@ module Fishbowl::Objects
     end
 
     def parse_attributes
-      binding.pry
       self.class.attributes.each do |field|
         field = field.to_s
 
@@ -29,7 +28,7 @@ module Fishbowl::Objects
         end
 
         instance_var = '@' + instance_var
-        value = @xml.xpath(field).first.nil? ? nil : @xml.xpath(field).first.inner_text
+        value = @xml.xpath(field).first.nil? ? nil : @xml.children.text
         instance_variable_set(instance_var, value)
       end
     end
