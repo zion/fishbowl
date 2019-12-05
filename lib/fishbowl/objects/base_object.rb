@@ -28,6 +28,7 @@ module Fishbowl::Objects
         end
 
         instance_var = '@' + instance_var
+        binding.pry
         value = @xml.xpath(field).first.nil? ? nil : @xml.children.text
         instance_variable_set(instance_var, value)
       end
