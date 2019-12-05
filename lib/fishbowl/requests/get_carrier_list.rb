@@ -1,6 +1,7 @@
 module Fishbowl::Requests
   def self.get_carrier_list
-    _, _, response = Fishbowl::Objects::BaseObject.new.send_request('CarrierListRq', 'FbiMsgsRs/CarrierListRs')
+    puts "getting carriers"
+    response = Fishbowl::Objects::BaseObject.new.send_request('CarrierListRq', 'FbiMsgsRs/CarrierListRs')
 
     results = []
 
