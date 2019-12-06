@@ -67,7 +67,7 @@ private
                   xml.LineNumber item[:line_number] unless item[:line_number].nil?
                   xml.QuickBooksClassName item[:quick_books_class_name] unless item[:quick_books_class_name].nil?
                   xml.NewItemFlag "false"
-                  xml.ItemType "10" || item[:item_type]
+                  xml.ItemType item[:item_type] || "10"
                   xml.Status "10"
                 } unless sales_order[:items].nil?
               end
