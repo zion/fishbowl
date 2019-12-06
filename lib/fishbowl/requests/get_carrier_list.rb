@@ -1,7 +1,8 @@
 module Fishbowl::Requests
   def self.get_carrier_list
-    _, _, response = Fishbowl::Objects::BaseObject.new.send_request('CarrierListRq', 'FbiMsgsRs/CarrierListRs')
-
+    puts "getting carriers"
+    code, response = Fishbowl::Objects::BaseObject.new.send_request('CarrierListRq', 'FbiMsgsRs/CarrierListRs')
+    
     results = []
 
     response.xpath("//Carriers/Name").each do |carrier_xml|

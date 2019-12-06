@@ -23,6 +23,7 @@ private
             xml.CustomerName sales_order[:customer_name] unless sales_order[:customer_name].nil?
             xml.Status "10" if sales_order[:status].nil?
             xml.Status sales_order[:status] unless sales_order[:status].nil?
+            xml.Carrier sales_order[:carrier] unless sales_order[:carrier].nil?
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
             xml.CustomerPO sales_order[:customer_po] unless sales_order[:customer_po].nil?
             xml.VendorPO sales_order[:vendor_po] unless sales_order[:vendor_po].nil?
@@ -60,14 +61,16 @@ private
                   xml.ID item[:id] unless item[:id].nil?
                   xml.ProductNumber item[:product_number] unless item[:product_number].nil?
                   xml.ProductPrice item[:product_price] unless item[:product_price].nil?
+                  xml.TotalPrice item[:total_price] unless item[:total_price].nil?
                   xml.Quantity item[:quantity] unless item[:quantity].nil?
                   xml.UOMCode item[:uom_code] unless item[:uom_code].nil?
                   xml.Description item[:description] unless item[:description].nil?
                   xml.LineNumber item[:line_number] unless item[:line_number].nil?
                   xml.QuickBooksClassName item[:quick_books_class_name] unless item[:quick_books_class_name].nil?
                   xml.NewItemFlag "false"
-                  xml.ItemType "10"
+                  xml.ItemType item[:item_type] || "10"
                   xml.Status "10"
+                  xml.AdjustPercentage item[:adjust_percentage] unless item[:adjust_percentage].nil?
                 } unless sales_order[:items].nil?
               end
             }

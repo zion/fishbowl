@@ -28,7 +28,7 @@ module Fishbowl::Objects
         end
 
         instance_var = '@' + instance_var
-        value = @xml.xpath(field).first.nil? ? nil : @xml.xpath(field).first.inner_text
+        value = @xml.children.nil? ? nil : @xml.children.text
         instance_variable_set(instance_var, value)
       end
     end
