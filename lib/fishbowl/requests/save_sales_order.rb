@@ -23,6 +23,7 @@ private
             xml.CustomerName sales_order[:customer_name] unless sales_order[:customer_name].nil?
             xml.Status "10" if sales_order[:status].nil?
             xml.Status sales_order[:status] unless sales_order[:status].nil?
+            xml.Carrier sales_order[:carrier] unless sales_order[:carrier].nil?
             xml.PaymentTerms sales_order[:payment_terms] unless sales_order[:payment_terms].nil?
             xml.CustomerPO sales_order[:customer_po] unless sales_order[:customer_po].nil?
             xml.VendorPO sales_order[:vendor_po] unless sales_order[:vendor_po].nil?
@@ -66,7 +67,7 @@ private
                   xml.LineNumber item[:line_number] unless item[:line_number].nil?
                   xml.QuickBooksClassName item[:quick_books_class_name] unless item[:quick_books_class_name].nil?
                   xml.NewItemFlag "false"
-                  xml.ItemType "10"
+                  xml.ItemType "10" || item[:item_type]
                   xml.Status "10"
                 } unless sales_order[:items].nil?
               end
