@@ -61,6 +61,7 @@ private
                   xml.ID item[:id] unless item[:id].nil?
                   xml.ProductNumber item[:product_number] unless item[:product_number].nil?
                   xml.ProductPrice item[:product_price] unless item[:product_price].nil?
+                  xml.TotalPrice item[:total_price] unless item[:total_price].nil?
                   xml.Quantity item[:quantity] unless item[:quantity].nil?
                   xml.UOMCode item[:uom_code] unless item[:uom_code].nil?
                   xml.Description item[:description] unless item[:description].nil?
