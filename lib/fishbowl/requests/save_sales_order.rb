@@ -68,7 +68,8 @@ private
                   xml.QuickBooksClassName item[:quick_books_class_name] unless item[:quick_books_class_name].nil?
                   xml.NewItemFlag "false"
                   xml.ItemType item[:item_type] || "10"
-                  xml.Status "10"
+                  xml.Status "10",
+                  xml.AdjustPercentage item[:adjust_percentage] unless item[:adjust_percentage].nil?
                 } unless sales_order[:items].nil?
               end
             }
