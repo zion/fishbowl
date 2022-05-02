@@ -77,7 +77,8 @@ module Fishbowl
     end
 
     def self.encoded_password
-      Digest::MD5.base64digest(@password)
+      # Digest::MD5.base64digest(@password)
+      @password
     end
 
     def self.write(request)

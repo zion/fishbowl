@@ -15,9 +15,9 @@ module Fishbowl
     end
 
     def self.get_status(code)
-      file = File.read(File.expand_path('../status_codes.yml', File.dirname(__FILE__)))
+      file = File.expand_path('../status_codes.yml', File.dirname(__FILE__))
       status_codes = YAML.load_file(file)['codes']
-      status_codes[code]['message']
+      status_codes[code.to_i]['message']
     end
   end
 end
