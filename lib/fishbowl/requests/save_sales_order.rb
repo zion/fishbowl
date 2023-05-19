@@ -28,6 +28,7 @@ private
             xml.CustomerPO sales_order[:customer_po] unless sales_order[:customer_po].nil?
             xml.VendorPO sales_order[:vendor_po] unless sales_order[:vendor_po].nil?
             xml.QuickBooksClassName sales_order[:quick_books_class_name] unless sales_order[:quick_books_class_name].nil?
+            xml.LocationGroup sales_order[:location_group] unless sales_order[:location_group].nil?
             xml.BillTo {
               xml.Name sales_order[:bill_to][:name] unless sales_order[:bill_to][:name].nil?
               xml.AddressField sales_order[:bill_to][:address] unless sales_order[:bill_to][:address].nil?
